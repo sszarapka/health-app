@@ -1,0 +1,8 @@
+@use './variables' as *;
+
+.intake-summary-container {
+  box-shadow: $shadow;
+  border-radius: $radius;
+  text-align: center;
+  padding: 30px;
+}

@@ -1,0 +1,22 @@
+@use './variables' as *;
+
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-xl;
+
+  .settings-item__label {
+    font-size: $font-l;
+  }
+  .settings-item__input {
+    width: 150px;
+    font-size: $font-l;
+  }
+  .settings-item__input.number {
+    text-align: right;
+  }
+  .settings-item__switch {
+    background-color: $grey !important;
+  }
+}

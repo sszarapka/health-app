@@ -1,0 +1,11 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+
+  .settings__log-out {
+    width: 100%;
+  }
+}

@@ -1,0 +1,14 @@
+@use './variables' as *;
+
+.blog {
+  .blog__card {
+    margin-bottom: 20px;
+
+    border-radius: $radius;
+    box-shadow: $shadow;
+    .card__image {
+      aspect-ratio: 2 / 1;
+      object-fit: cover;
+    }
+  }
+}

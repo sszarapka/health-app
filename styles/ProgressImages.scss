@@ -1,0 +1,19 @@
+@use './variables' as *;
+
+.progress-images {
+  display: grid;
+  grid-template-columns: (repeat(3, 1fr));
+  gap: 10px;
+  .progress-images__add {
+    height: 100%;
+    aspect-ratio: 9 / 16;
+    font-size: 30px;
+    color: $primary;
+  }
+  .progress-images__image {
+    border-radius: $radius;
+    box-shadow: $shadow;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+  }
+}

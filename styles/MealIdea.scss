@@ -1,0 +1,25 @@
+@use './variables' as *;
+
+.meal-idea {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: $spacing-m;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  // background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)),
+  //   url('https://chojnice24.pl/cmsdata/library/reklamowe/ppdomowejedzenie.jpg');
+
+  background-size: cover;
+  background-position: center;
+  aspect-ratio: 5 / 2;
+  margin-bottom: $spacing-xl;
+  .meal-idea__name {
+    font-size: $font-xl;
+    font-weight: 600;
+    color: #fff;
+  }
+  .meal-idea__type {
+    color: #fff;
+  }
+}

@@ -1,7 +1,19 @@
+@use './variables' as *;
+
 html {
   font-family: 'Lato', sans-serif;
 }
 
 a {
   text-decoration: none;
+}
+
+body {
+  margin: 0 auto;
+  max-width: $app-width;
+}
+
+.app-container {
+  margin: 20px;
+  margin-bottom: 80px;
 }

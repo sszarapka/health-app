@@ -1,9 +1,11 @@
 import InputNum from '../components/InputNum'
+import IntakeSummary from '../components/IntakeSummary'
 
 const dashboard = () => {
   return (
     <>
-      <InputNum />
+      <InputNum title="Aktualna waga" size="large" />
+      <IntakeSummary />
     </>
   )
 }

@@ -3,11 +3,18 @@ $primary: #1890ff;
 $light-primary: #5db9ff;
 $background: #212121;
 $grey: #333;
+$light-grey: rgb(102, 102, 102);
 $muted-white: #ddd;
+
+// BORDERS
+$radius: 8px;
+$shadow: 0 0 5px 3px rgb(243, 242, 242);
 
 // SPACING
 $spacing-s: 8px;
 $spacing-m: 12px;
+$spacing-l: 16px;
+$spacing-xl: 20px;
 
 //FONT SIZE
 $font-s: 12px;

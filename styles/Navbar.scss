@@ -4,10 +4,14 @@
   display: flex;
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   justify-content: space-around;
   box-shadow: 0px 0px 5px 5px rgb(242, 242, 242);
+  max-width: $app-width;
+  background-color: #fff;
+
   .item-container {
     display: flex;
     flex-direction: column;

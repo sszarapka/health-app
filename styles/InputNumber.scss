@@ -1,0 +1,49 @@
+@use './variables' as *;
+.input-section {
+  box-shadow: $shadow;
+  padding-top: $spacing-l;
+  border-radius: $radius;
+  margin-bottom: 20px;
+  .input-section__title {
+    color: $grey;
+    text-align: center;
+  }
+  .input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0px $spacing-m $spacing-xl $spacing-m;
+
+    .input-section__input {
+      width: 200px;
+      border: none;
+      text-align: center;
+      font-size: 60px;
+      font-weight: 600;
+      padding: 0;
+      color: $grey;
+    }
+    .input-section__plus,
+    .input-section__minus {
+      color: $primary;
+      font-size: 35px;
+    }
+  }
+}
+
+.input-section.small {
+  .input-section__title {
+  }
+  .input-container {
+    .input-section__input {
+      width: 100px;
+
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .input-section__plus,
+    .input-section__minus {
+      font-size: 25px;
+    }
+  }
+}
