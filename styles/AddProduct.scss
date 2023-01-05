@@ -1,0 +1,22 @@
+@use './variables' as *;
+
+.search {
+  display: flex;
+
+  .barcode-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    flex-shrink: 0;
+    .search__barcode {
+      font-size: 30px;
+      color: $grey;
+    }
+    .search__barcode-label {
+      line-height: 90%;
+      font-size: $font-s;
+
+      color: $grey;
+    }
+  }
+}

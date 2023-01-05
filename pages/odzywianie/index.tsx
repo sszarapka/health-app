@@ -1,15 +1,15 @@
 import { Typography } from 'antd'
-import AddMeal from '../components/AddMeal'
-import MealIdea from '../components/MealIdea'
+import Meal from '../../components/Meal'
+import MealIdea from '../../components/MealIdea'
 const { Title } = Typography
 
 const nutrition = () => {
   return (
     <>
       <Title level={2}>Posiłki</Title>
-      <AddMeal name="Śniadanie" />
-      <AddMeal name="Obiad" />
-      <AddMeal name="Kolacja" />
+      <Meal name="Śniadanie" />
+      <Meal name="Obiad" />
+      <Meal name="Kolacja" />
       <Title level={2}>Propozycje na dzisiaj</Title>
       <MealIdea
         name="Naleśniory"

@@ -1,0 +1,5 @@
+.products-list {
+  > .product:first-child {
+    border-top: none;
+  }
+}

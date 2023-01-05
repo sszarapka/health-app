@@ -1,29 +1,30 @@
 @use './variables' as *;
 
-.meal-item {
+.meal {
   display: flex;
-  border-top: 1px solid rgb(232, 232, 232);
-  padding: $spacing-m 0;
-
+  flex-direction: column;
+  box-shadow: $shadow;
+  border-radius: $radius;
+  padding: $spacing-m;
   color: $grey;
-  .meal-item__image {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-  }
-  .meal-item__info {
+  margin-bottom: $spacing-xl;
+  .add-meal-container {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    margin-left: $spacing-m;
-    .meal-item__name {
-      font-size: $font-l;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: $spacing-l;
+    border-bottom: 1px solid $muted-white;
+    .meal__name {
+      font-size: $font-xl;
       font-weight: 500;
     }
-    .meal-item__weigth,
-    .meal-item__calories {
-      font-size: $font-s;
-      color: $light-grey;
+    .meal__calorie {
+      font-size: $font-l;
+    }
+    .meal__add {
+      font-size: 30px;
+      margin-left: $spacing-m;
+      color: $primary;
     }
   }
 }

@@ -40,9 +40,9 @@ const Navbar = () => {
         Postępy
       </Link>
       <Link
-        href="/nutrition"
+        href="/odzywianie"
         className={
-          path.includes('nutrition')
+          path.includes('odzywianie')
             ? 'item-container active'
             : 'item-container'
         }
