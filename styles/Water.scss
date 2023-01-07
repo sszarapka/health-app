@@ -1,0 +1,43 @@
+@use './variables' as *;
+
+.title-data {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: $spacing-xl 0;
+  .water__title {
+    margin-bottom: 0;
+  }
+  .water__data {
+    font-size: $font-l;
+
+    .water__data--red {
+      color: #ff4d4f;
+    }
+    .water__data--orange {
+      color: #f7be00;
+    }
+    .water__data--green {
+      color: #35bb00;
+    }
+    .water__data--green,
+    .water__data--orange,
+    .water__data--red {
+      font-weight: 600;
+    }
+  }
+}
+.glasses {
+  display: grid;
+  grid-template-columns: (repeat(9, 1fr));
+  align-items: center;
+  gap: 5px;
+  .water__glass {
+    font-size: 35px;
+    color: #53c6fa;
+  }
+  .water__add {
+    font-size: 25px;
+    color: $grey;
+  }
+}

@@ -18,22 +18,16 @@ const Navbar = () => {
   return (
     <nav className="nav">
       <Link
-        href="/dashboard"
-        className={
-          path.includes('dashboard')
-            ? 'item-container active'
-            : 'item-container'
-        }
+        href="/"
+        className={path === '/' ? 'item-container active' : 'item-container'}
       >
         <PieChartFilled className="nav__item" />
         Panel
       </Link>
       <Link
-        href="/measurements"
+        href="/pomiary"
         className={
-          path.includes('measurements')
-            ? 'item-container active'
-            : 'item-container'
+          path.includes('pomiary') ? 'item-container active' : 'item-container'
         }
       >
         <DashboardFilled className="nav__item" />
@@ -60,9 +54,11 @@ const Navbar = () => {
         Blog
       </Link>
       <Link
-        href="/settings"
+        href="/ustawienia"
         className={
-          path.includes('settings') ? 'item-container active' : 'item-container'
+          path.includes('ustawienia')
+            ? 'item-container active'
+            : 'item-container'
         }
       >
         <SettingFilled className="nav__item" />

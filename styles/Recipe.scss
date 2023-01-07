@@ -1,0 +1,30 @@
+@use './variables' as *;
+
+.recipe {
+  .recipe__image {
+    border-radius: $radius;
+    box-shadow: $shadow;
+    margin-bottom: $spacing-xl;
+  }
+  .recipe__macro {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    * {
+      margin: 0 $spacing-m;
+    }
+  }
+  .recipe__ingredients {
+    margin-bottom: $spacing-xl;
+    list-style: none;
+    .ingredients__item {
+      margin-bottom: $spacing-s;
+    }
+  }
+  .recipe__description {
+    font-size: $font-l;
+  }
+  .recipe__enjoy {
+    font-size: $font-l;
+    font-weight: 600;
+  }
+}

@@ -1,4 +1,5 @@
-import { Button, Typography } from 'antd'
+import { Typography } from 'antd'
+import Link from 'next/link'
 const { Text } = Typography
 import { PlusCircleFilled } from '@ant-design/icons'
 import ProductsList from './ProductsList'
@@ -31,10 +32,12 @@ const Meal = ({ name }: MealProps) => {
         <Text className="meal__name">{name}</Text>
         <div className="meal-container">
           <Text className="meal__calorie">0 kcal</Text>
-          <PlusCircleFilled className="meal__add" />
+          <Link href="/odzywianie/znajdz-produkt">
+            <PlusCircleFilled className="meal__add" />
+          </Link>
         </div>
       </div>
-      <ProductsList products={mockProducts} type="add" />
+      <ProductsList products={mockProducts} type="edit" />
     </section>
   )
 }

@@ -1,24 +1,38 @@
+import Link from 'next/link'
 import { Typography } from 'antd'
 const { Text } = Typography
 
-interface MealIdeaProps {
+interface Recipe {
   name: string
   type: 'Śniadanie' | 'Obiad' | 'Kolacja'
-  url: string
+  ingredients: string[]
+  description: string
+  macro: {
+    carbs: number
+    protein: number
+    fat: number
+  }
+  image: string
 }
 
-const MealIdea = ({ name, type, url }: MealIdeaProps) => {
+interface MealIdeaProps {
+  recipe: Recipe
+  key: React.Key
+}
+
+const MealIdea = ({ recipe, key }: MealIdeaProps) => {
   return (
-    <section
+    <Link
+      href="odzywianie/nazwa-przepisu"
       className="meal-idea"
       style={{
         backgroundImage: ` linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)),
-    url('${url}')`,
+    url('${recipe.image}')`,
       }}
     >
-      <Text className="meal-idea__type">{type}</Text>
-      <Text className="meal-idea__name">{name}</Text>
-    </section>
+      <Text className="meal-idea__type">{recipe.type}</Text>
+      <Text className="meal-idea__name">{recipe.name}</Text>
+    </Link>
   )
 }
 
