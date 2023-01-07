@@ -42,7 +42,12 @@ const Recipe = ({ name, type, ingredients, description }: RecipeProps) => {
   return (
     <section className="recipe">
       <Title level={2}>{mockedRecipe.name}</Title>
-      <Image src={mockedRecipe.image} alt="obraz" className="recipe__image" />
+      <Image
+        src={mockedRecipe.image}
+        alt="obraz"
+        className="recipe__image"
+        preview={false}
+      />
       <div className="recipe__macro">
         <Text>W: {mockedRecipe.macro.carbs}g</Text>
         <Text>B: {mockedRecipe.macro.protein}g</Text>

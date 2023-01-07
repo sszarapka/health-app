@@ -29,7 +29,7 @@
 }
 .glasses {
   display: grid;
-  grid-template-columns: (repeat(9, 1fr));
+  grid-template-columns: (repeat(8, 1fr));
   align-items: center;
   gap: 5px;
   .water__glass {

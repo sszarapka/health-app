@@ -18,7 +18,12 @@ const InputNum = ({ title, size }: InputNumProps) => {
       </Title>
       <div className="input-container">
         <MinusCircleFilled className="input-section__minus" />
-        <Input type="number" size="large" className="input-section__input" />
+        <Input
+          type="number"
+          size="large"
+          className="input-section__input"
+          defaultValue={20.8}
+        />
         <PlusCircleFilled className="input-section__plus" />
       </div>
     </section>

@@ -10,10 +10,28 @@
     font-size: 30px;
     color: $primary;
   }
-  .progress-images__image {
+  .image-container {
+    position: relative;
     border-radius: $radius;
     box-shadow: $shadow;
     aspect-ratio: 9 / 16;
-    object-fit: cover;
+    display: flex;
+    .progress-images__image {
+      object-fit: cover;
+
+      border-radius: $radius;
+      width: 100%;
+      height: 100%;
+    }
+    .progress-images__date {
+      position: absolute;
+      padding: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.58);
+      color: #fff;
+      padding: 0 4px;
+      border-radius: $radius 0;
+    }
   }
 }

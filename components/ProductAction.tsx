@@ -14,6 +14,7 @@ const ProductAction = ({ type }: ProductActionProps) => {
         src="https://thumbs.dreamstime.com/b/t%C5%82a-ser-odizolowywaj%C4%85cy-kawa%C5%82ka-biel-42295261.jpg"
         alt="obraz"
         className="action__image"
+        preview={false}
       />
       <Text className="action__name">Serek kozi</Text>
 

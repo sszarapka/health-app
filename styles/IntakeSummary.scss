@@ -1,8 +1,40 @@
 @use './variables' as *;
 
-.intake-summary-container {
+.intake-summary {
+  display: flex;
   box-shadow: $shadow;
   border-radius: $radius;
-  text-align: center;
-  padding: 30px;
+  padding: $spacing-xl $spacing-s;
+  .intake-summary__chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    position: relative;
+    canvas {
+      margin-right: 0 !important;
+    }
+    .chart__calories {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      .calories__current {
+        font-size: 30px;
+        font-weight: 600;
+      }
+    }
+  }
+  .intake-summary__macro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    .macro--bold {
+      font-weight: 600;
+    }
+  }
 }
