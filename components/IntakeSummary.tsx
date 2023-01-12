@@ -33,7 +33,7 @@ const IntakeSummary = ({ macro }: IntakeSummaryProps) => {
         data: [carbs.current, protein.current, fat.current],
         backgroundColor: ['#fdcb00', '#6626dc', '#fd084a'],
         borderRadius: 20,
-        borderWidth: 6,
+        borderWidth: 3,
         weight: 20,
       },
     ],
@@ -48,7 +48,7 @@ const IntakeSummary = ({ macro }: IntakeSummaryProps) => {
         enabled: false,
       },
     },
-    cutout: '70%',
+    cutout: '78%',
     tooltipEnabled: false,
     events: [],
   }

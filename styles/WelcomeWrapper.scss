@@ -1,0 +1,28 @@
+@use './variables' as *;
+
+.welcome-container {
+  min-height: 100vh;
+  padding: $spacing-xl;
+  display: flex;
+  background-color: $primary;
+}
+
+.welcome-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+
+  .welcome-wrapper__title {
+    color: #fff;
+  }
+
+  .welcome-wrapper__next {
+    text-align: right;
+    .next__button {
+      color: $primary;
+      font-weight: 600;
+      width: 100px;
+    }
+  }
+}

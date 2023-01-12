@@ -7,7 +7,6 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <main className="app-container">{children}</main>
-
       <Navbar />
     </>
   )

@@ -1,0 +1,43 @@
+@use './variables' as *;
+
+.welcome__container {
+  display: flex;
+  flex-direction: column;
+  .welcome__info {
+    font-size: $font-xl;
+    color: #fff;
+  }
+  .welcome__instruction {
+    font-size: $font-l;
+    margin-top: $spacing-xl;
+    color: #fff;
+  }
+}
+
+.welcome__number {
+  width: 100px;
+  align-self: center;
+  text-align: center;
+  font-size: $font-xl;
+}
+
+.welcome__select-container {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  .welcome__select {
+    font-size: $font-xl;
+    color: #fff;
+    margin-top: $spacing-s;
+    .ant-radio-checked .ant-radio-inner,
+    .ant-radio:hover .ant-radio-inner,
+    .ant-radio-checked .ant-radio-inner:focus {
+      border-color: #fff;
+      background-color: $primary;
+    }
+
+    .ant-radio-checked .ant-radio-inner:after {
+      background-color: #fff;
+    }
+  }
+}
