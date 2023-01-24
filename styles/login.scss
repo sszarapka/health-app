@@ -1,0 +1,12 @@
+@use './variables' as *;
+
+.log-in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  &__button {
+    color: $primary;
+    font-weight: 600;
+  }
+}
