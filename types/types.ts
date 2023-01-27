@@ -103,3 +103,8 @@ export interface RecipeProps {
 export interface WelcomeLayoutProps {
   children: React.ReactNode
 }
+
+export interface DangerButtonProps {
+  children: React.ReactNode
+  className: string
+}
