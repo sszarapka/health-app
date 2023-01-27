@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Image, Typography, Divider, Input, Select, Button } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 const { Text } = Typography
+import { ROUTES } from '../constants/routes'
 
 interface ProductActionProps {
   type: 'add' | 'edit'
@@ -35,13 +36,13 @@ const ProductAction = ({ type }: ProductActionProps) => {
           size="large"
         />
       </div>
-      <Link href="/odzywianie">
+      <Link href={ROUTES.NUTRITION}>
         <Button type="primary" size="large" className="action__confirm">
           {type === 'add' ? 'Dodaj produkt' : 'Zapisz zmiany'}
         </Button>
       </Link>
       {type === 'edit' && (
-        <Link href="/odzywianie">
+        <Link href={ROUTES.NUTRITION}>
           <Button danger className="action__delete">
             Usuń <DeleteOutlined />
           </Button>

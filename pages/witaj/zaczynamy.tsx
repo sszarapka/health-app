@@ -1,9 +1,11 @@
 import { Typography, Button } from 'antd'
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 const { Text, Title } = Typography
+import { ROUTES } from '../../constants/routes'
+
 const LetsStart = () => {
   return (
-    <WelcomeWrapper path="/" title="">
+    <WelcomeWrapper path={ROUTES.DASHBOARD} title="">
       <div>
         <Title className="welcome-wrapper__title">To juz wszystko!</Title>
         <Text className="welcome-wrapper__info">

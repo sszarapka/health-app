@@ -2,10 +2,11 @@ import { Input } from 'antd'
 import { useRouter } from 'next/router'
 
 import WelcomeWrapper from '../../components/WelcomeWrapper'
+import { ROUTES } from '../../constants/routes'
 
 const Welcome = () => {
   const router = useRouter()
-  const path = '/witaj/cel'
+  const path = ROUTES.GOAL
   return (
     <WelcomeWrapper path={path} title="Waga">
       <Input

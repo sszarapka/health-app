@@ -4,6 +4,10 @@ import { useRouter } from 'next/router'
 import { Typography, Button } from 'antd'
 
 const { Text, Title } = Typography
+import { ROUTES } from '../../constants/routes'
+
+// from database
+let isSurveyFilled = false
 
 const LogIn = () => {
   const provider = new GoogleAuthProvider()
@@ -11,8 +15,9 @@ const LogIn = () => {
   const handleLogIn = () => {
     signInWithPopup(getAuth(), provider)
       .then(result => {
+        const path = isSurveyFilled ? ROUTES.DASHBOARD : ROUTES.WELCOME
         const user = result.user
-        router.push('/')
+        router.push(path)
         console.log(user)
       })
 

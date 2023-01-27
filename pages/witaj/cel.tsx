@@ -3,11 +3,13 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
 const { Text } = Typography
+import { ROUTES } from '../../constants/routes'
+
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 
 const Gender = () => {
   const router = useRouter()
-  const path = '/witaj/aktywnosc'
+  const path = ROUTES.ACTIVITY
   useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
@@ -21,7 +23,7 @@ const Gender = () => {
     return () => {
       document.removeEventListener('keydown', keyDownHandler)
     }
-  }, [router])
+  }, [path, router])
 
   return (
     <WelcomeWrapper path={path} title="Cel">
