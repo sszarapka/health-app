@@ -1,13 +1,6 @@
 import Product from './Product'
 
-interface ProductsListProps {
-  products: {
-    name: string
-    weigth: number
-    calories: number
-  }[]
-  type: 'add' | 'edit'
-}
+import { ProductsListProps } from '../types/types'
 
 const ProductsList = ({ products, type }: ProductsListProps) => {
   const productsList = products.map(product => (

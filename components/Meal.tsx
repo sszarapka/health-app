@@ -4,9 +4,7 @@ const { Text } = Typography
 import { PlusCircleFilled } from '@ant-design/icons'
 import ProductsList from './ProductsList'
 
-interface MealProps {
-  name: 'Śniadanie' | 'Obiad' | 'Kolacja'
-}
+import { MealProps } from '../types/types'
 
 const Meal = ({ name }: MealProps) => {
   const mockProducts = [

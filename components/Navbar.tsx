@@ -27,7 +27,9 @@ const Navbar = () => {
       <Link
         href="/pomiary"
         className={
-          path.includes('pomiary') ? 'item-container active' : 'item-container'
+          path.includes('measurements')
+            ? 'item-container active'
+            : 'item-container'
         }
       >
         <DashboardFilled className="nav__item" />
@@ -36,7 +38,7 @@ const Navbar = () => {
       <Link
         href="/odzywianie"
         className={
-          path.includes('odzywianie')
+          path.includes('nutrition')
             ? 'item-container active'
             : 'item-container'
         }
@@ -56,9 +58,7 @@ const Navbar = () => {
       <Link
         href="/ustawienia"
         className={
-          path.includes('ustawienia')
-            ? 'item-container active'
-            : 'item-container'
+          path.includes('settings') ? 'item-container active' : 'item-container'
         }
       >
         <SettingFilled className="nav__item" />

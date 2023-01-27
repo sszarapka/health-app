@@ -5,22 +5,7 @@ ChartJS.register(ArcElement, Tooltip, Legend)
 import { Progress, Typography } from 'antd'
 const { Text } = Typography
 
-interface IntakeSummaryProps {
-  macro: {
-    carbs: {
-      current: number
-      target: number
-    }
-    protein: {
-      current: number
-      target: number
-    }
-    fat: {
-      current: number
-      target: number
-    }
-  }
-}
+import { IntakeSummaryProps } from '../types/types'
 
 const IntakeSummary = ({ macro }: IntakeSummaryProps) => {
   const { carbs, protein, fat } = macro

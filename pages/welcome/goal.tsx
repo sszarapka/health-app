@@ -1,11 +1,10 @@
-import { Typography, Radio } from 'antd'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-const { Text } = Typography
 import WelcomeWrapper from '../../components/WelcomeWrapper'
+import RadioGroup from '../../components/RadioGroup'
 
-const Gender = () => {
+const Goal = () => {
   const router = useRouter()
   const path = '/witaj/aktywnosc'
   useEffect(() => {
@@ -25,23 +24,9 @@ const Gender = () => {
 
   return (
     <WelcomeWrapper path={path} title="Cel">
-      <Radio.Group
-        size="large"
-        className="welcome__select-container"
-        defaultValue="Zbudować mięśnie"
-      >
-        <Radio value="Schudnąć" className="welcome__select">
-          Schudnąć
-        </Radio>
-        <Radio value="Zbudować mięśnie" className="welcome__select">
-          Zbudować mięśnie
-        </Radio>
-        <Radio value="Utrzymać wagę" className="welcome__select">
-          Utrzymać wagę
-        </Radio>
-      </Radio.Group>
+      <RadioGroup values={['Schudnąć', 'Zbudować mięśnie', 'Utrzymać wagę']} />
     </WelcomeWrapper>
   )
 }
 
-export default Gender
+export default Goal

@@ -2,23 +2,7 @@ import Link from 'next/link'
 import { Typography } from 'antd'
 const { Text } = Typography
 
-interface Recipe {
-  name: string
-  type: 'Śniadanie' | 'Obiad' | 'Kolacja'
-  ingredients: string[]
-  description: string
-  macro: {
-    carbs: number
-    protein: number
-    fat: number
-  }
-  image: string
-}
-
-interface MealIdeaProps {
-  recipe: Recipe
-  key: React.Key
-}
+import { MealIdeaProps } from '../types/types'
 
 const MealIdea = ({ recipe, key }: MealIdeaProps) => {
   return (

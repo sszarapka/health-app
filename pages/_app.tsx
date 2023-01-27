@@ -6,7 +6,7 @@ import WelcomeLayout from '../components/WelcomeLayout'
 import '../styles/styles.scss'
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter().pathname
-  if (router.startsWith('/witaj'))
+  if (router.startsWith('/welcome'))
     return (
       <WelcomeLayout>
         <Component {...pageProps} />

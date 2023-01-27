@@ -1,13 +1,13 @@
-import { Typography, Radio } from 'antd'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-const { Text } = Typography
+import RadioGroup from '../../components/RadioGroup'
+
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 
 const Gender = () => {
   const router = useRouter()
-  const path = '/witaj/zaczynamy'
+  const path = '/witaj/waga'
   useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
@@ -24,22 +24,8 @@ const Gender = () => {
   }, [router])
 
   return (
-    <WelcomeWrapper path={path} title="Aktywność">
-      <Radio.Group
-        size="large"
-        className="welcome__select-container"
-        defaultValue="Umiarkowana"
-      >
-        <Radio value="Wysoka" className="welcome__select">
-          Wysoka
-        </Radio>
-        <Radio value="Umiarkowana" className="welcome__select">
-          Umiarkowana
-        </Radio>
-        <Radio value="Niska" className="welcome__select">
-          Niska
-        </Radio>
-      </Radio.Group>
+    <WelcomeWrapper path={path} title="Płeć">
+      <RadioGroup values={['Męzczyzna', 'Kobieta']} />
     </WelcomeWrapper>
   )
 }
