@@ -1,18 +1,7 @@
 import { Typography, Image } from 'antd'
 const { Title, Text, Paragraph } = Typography
 
-interface RecipeProps {
-  name: string
-  type: 'Śniadanie' | 'Obiad' | 'Kolacja'
-  ingredients: string[]
-  description: string
-  macro: {
-    carbs: number
-    protein: number
-    fat: number
-  }
-  image: string
-}
+import { RecipeProps } from '../../types/types'
 
 const mockedRecipe: RecipeProps = {
   name: 'Naleśniory',

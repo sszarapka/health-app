@@ -3,9 +3,7 @@ import { Image, Typography, Divider, Input, Select, Button } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 const { Text } = Typography
 
-interface ProductActionProps {
-  type: 'add' | 'edit'
-}
+import { ProductActionProps } from '../types/types'
 
 const ProductAction = ({ type }: ProductActionProps) => {
   return (

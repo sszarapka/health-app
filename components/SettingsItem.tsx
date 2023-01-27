@@ -1,14 +1,7 @@
 import { Input, Typography, Select, Switch } from 'antd'
 const { Text } = Typography
 
-interface SettingsItemProps {
-  label: string
-  type: 'select' | 'number' | 'switch'
-  options?: {
-    value: string
-    label: string
-  }[]
-}
+import { SettingsItemProps } from '../types/types'
 
 const SettingsItem = ({ label, type, options }: SettingsItemProps) => {
   return (

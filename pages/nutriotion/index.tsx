@@ -3,20 +3,7 @@ import Meal from '../../components/Meal'
 import MealIdea from '../../components/MealIdea'
 const { Title } = Typography
 
-interface Recipe {
-  name: string
-  type: 'Śniadanie' | 'Obiad' | 'Kolacja'
-  ingredients: string[]
-  description: string
-  macro: {
-    carbs: number
-    protein: number
-    fat: number
-  }
-  image: string
-}
-
-type RecipeList = Recipe[]
+import { RecipeList } from '../../types/types'
 
 const mockedRecipe: RecipeList = [
   {

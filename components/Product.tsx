@@ -4,12 +4,7 @@ import { Typography } from 'antd'
 import { RightOutlined, FormOutlined } from '@ant-design/icons'
 const { Text } = Typography
 
-interface ProductProps {
-  name: string
-  weigth: number
-  calories: number
-  type: 'add' | 'edit'
-}
+import { ProductProps } from '../types/types'
 
 const Product = ({ name, weigth, calories, type }: ProductProps) => {
   return (
