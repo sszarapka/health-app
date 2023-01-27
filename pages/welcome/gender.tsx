@@ -1,8 +1,8 @@
-import { Typography, Radio } from 'antd'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-const { Text } = Typography
+import RadioGroup from '../../components/RadioGroup'
+
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 
 const Gender = () => {
@@ -25,18 +25,7 @@ const Gender = () => {
 
   return (
     <WelcomeWrapper path={path} title="Płeć">
-      <Radio.Group
-        size="large"
-        className="welcome__select-container"
-        defaultValue="Męzczyzna"
-      >
-        <Radio value="Męzczyzna" className="welcome__select">
-          Męzczyzna
-        </Radio>
-        <Radio value="Kobieta" className="welcome__select">
-          Kobieta
-        </Radio>
-      </Radio.Group>
+      <RadioGroup values={['Męzczyzna', 'Kobieta']} />
     </WelcomeWrapper>
   )
 }
