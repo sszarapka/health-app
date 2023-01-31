@@ -8,10 +8,7 @@ library.add(fas, faGlassWater)
 
 const { Title, Text } = Typography
 
-interface WaterProps {
-  numberOfGlasses: number
-  waterTarget: number
-}
+import { WaterProps } from '../types/types'
 
 const Water = ({ numberOfGlasses, waterTarget }: WaterProps) => {
   const glasses = [...Array(numberOfGlasses)].map((e, i) => (

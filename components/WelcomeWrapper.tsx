@@ -2,11 +2,7 @@ import { Typography, Button } from 'antd'
 import Link from 'next/link'
 const { Title, Text } = Typography
 
-interface WelcomeWrapperProps {
-  children: React.ReactNode
-  path: string
-  title: string
-}
+import { WelcomeWrapperProps } from '../types/types'
 
 const WelcomeWrapper = ({ children, path, title }: WelcomeWrapperProps) => {
   return (

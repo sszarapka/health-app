@@ -4,9 +4,7 @@ import { DeleteOutlined } from '@ant-design/icons'
 const { Text } = Typography
 import { ROUTES } from '../constants/routes'
 
-interface ProductActionProps {
-  type: 'add' | 'edit'
-}
+import { ProductActionProps } from '../types/types'
 
 const ProductAction = ({ type }: ProductActionProps) => {
   return (
