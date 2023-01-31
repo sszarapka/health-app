@@ -1,19 +1,43 @@
-import { Typography, Input } from 'antd'
+import { Input, message } from 'antd'
 import { useRouter } from 'next/router'
-const { Text } = Typography
+import { useRestrictedPage } from '../../hooks/useRestrictedPage'
+import { useIsAuthLoading } from '../../hooks/useIsAuthLoading'
+import Loading from '../../components/Loading'
 import WelcomeWrapper from '../../components/WelcomeWrapper'
+import { useState } from 'react'
 import { ROUTES } from '../../constants/routes'
 
 const Welcome = () => {
+  useRestrictedPage()
   const router = useRouter()
-  //state - if input is NOT filled dont allow to proceed
+  const [inputValue, setInputValue] = useState<number>(0)
+  const [isFilled, setIsFilled] = useState<boolean>(false)
+  const [messageApi, contextHolder] = message.useMessage()
+  const error = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'Wiek musi być większy od 0',
+    })
+  }
+  const handleNext = () => {
+    if (inputValue > 0) {
+      // send to DB
+      router.push(ROUTES.GENDER)
+    } else {
+      error()
+    }
+  }
+
+  if (useIsAuthLoading()) return <Loading />
   return (
     <WelcomeWrapper path={ROUTES.GENDER} title="Wiek">
+      {contextHolder}
       <Input
         type="number"
         className="welcome__number"
         size="large"
-        onPressEnter={() => router.push(ROUTES.GENDER)}
+        onPressEnter={handleNext}
+        onChange={e => setInputValue(parseInt(e.target.value))}
       />
     </WelcomeWrapper>
   )

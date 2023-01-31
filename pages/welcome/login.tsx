@@ -2,6 +2,8 @@ import { GoogleOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import { useRouter } from 'next/router'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { useIsAuthLoading } from '../../hooks/useIsAuthLoading'
+import Loading from '../../components/Loading'
 import {
   getAuth,
   GoogleAuthProvider,
@@ -35,6 +37,7 @@ const LogIn = () => {
   useEffect(() => {
     if (!loading && user) router.push(ROUTES.DASHBOARD)
   }, [user, router, loading])
+  if (useIsAuthLoading()) return <Loading />
   return (
     <section className="log-in">
       <Button className="log-in__button" size="large" onClick={handleLogIn}>

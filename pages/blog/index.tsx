@@ -1,9 +1,14 @@
 import Link from 'next/link'
 import { Card, Image, Typography } from 'antd'
-
+import { useRestrictedPage } from '../../hooks/useRestrictedPage'
+import { useIsAuthLoading } from '../../hooks/useIsAuthLoading'
+import Loading from '../../components/Loading'
 const { Meta } = Card
 const { Title } = Typography
-const blog = () => {
+const Blog = () => {
+  useRestrictedPage()
+  if (useIsAuthLoading()) return <Loading />
+
   return (
     <section className="blog">
       <Title level={2}>Blog</Title>
@@ -46,4 +51,4 @@ const blog = () => {
   )
 }
 
-export default blog
+export default Blog

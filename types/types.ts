@@ -107,4 +107,5 @@ export interface WelcomeLayoutProps {
 export interface DangerButtonProps {
   children: React.ReactNode
   className: string
+  onClick?(): void
 }

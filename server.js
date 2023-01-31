@@ -35,6 +35,8 @@ app.prepare().then(() => {
         app.render(req, res, '/nutrition/recipe-name', query)
       case '/witaj':
         app.render(req, res, '/welcome', query)
+      case '/witaj/zaczynamy':
+        app.render(req, res, '/welcome/start', query)
       case '/witaj/aktywnosc':
         app.render(req, res, '/welcome/activity', query)
       case '/witaj/wiek':
@@ -45,7 +47,8 @@ app.prepare().then(() => {
         app.render(req, res, '/welcome/goal', query)
       case '/witaj/waga':
         app.render(req, res, '/welcome/weigth', query)
-
+      case '/witaj/logowanie':
+        app.render(req, res, '/welcome/login', query)
       default:
         handle(req, res, parsedUrl)
     }
