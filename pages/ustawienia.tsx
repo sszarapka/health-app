@@ -1,4 +1,5 @@
 import { Typography, Button } from 'antd'
+
 import SettingsItem from '../components/SettingsItem'
 const { Title } = Typography
 const settings = () => {
