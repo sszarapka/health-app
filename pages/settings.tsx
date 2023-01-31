@@ -2,6 +2,7 @@ import { Typography, Button } from 'antd'
 
 import SettingsItem from '../components/SettingsItem'
 const { Title } = Typography
+import DangerButton from '../components/DangerButton'
 const settings = () => {
   return (
     <section className="settings">
@@ -38,9 +39,7 @@ const settings = () => {
 
         <SettingsItem label="Tryb ciemny" type="switch" />
       </div>
-      <Button danger className="settings__log-out">
-        Wyloguj się
-      </Button>
+      <DangerButton className="settings__log-out">Wyloguj się</DangerButton>
     </section>
   )
 }
