@@ -1,10 +1,14 @@
 import { Input, Typography } from 'antd'
 import { BarcodeOutlined } from '@ant-design/icons'
+import { useRestrictedPage } from '../../hooks/useRestrictedPage'
+import { useIsAuthLoading } from '../../hooks/useIsAuthLoading'
+import Loading from '../../components/Loading'
 import ProductsList from '../../components/ProductsList'
 const { Search } = Input
 const { Text } = Typography
 
 const FindProduct = () => {
+  useRestrictedPage()
   const mockProducts = [
     {
       name: 'Serek',
@@ -22,6 +26,9 @@ const FindProduct = () => {
       calories: 100,
     },
   ]
+
+  if (useIsAuthLoading()) return <Loading />
+
   return (
     <>
       <div className="search">

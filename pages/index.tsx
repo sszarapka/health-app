@@ -1,8 +1,12 @@
+import { useRestrictedPage } from '../hooks/useRestrictedPage'
+import { useIsAuthLoading } from '../hooks/useIsAuthLoading'
+import Loading from '../components/Loading'
 import InputNum from '../components/InputNum'
 import IntakeSummary from '../components/IntakeSummary'
 import Water from '../components/Water'
 
-const dashboard = () => {
+const Dashboard = () => {
+  useRestrictedPage()
   const macro = {
     carbs: {
       current: 190,
@@ -17,6 +21,7 @@ const dashboard = () => {
       target: 65,
     },
   }
+  if (useIsAuthLoading()) return <Loading />
   return (
     <>
       <InputNum title="Aktualna waga" size="large" />
@@ -26,4 +31,4 @@ const dashboard = () => {
   )
 }
 
-export default dashboard
+export default Dashboard

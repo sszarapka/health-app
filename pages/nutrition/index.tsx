@@ -1,8 +1,10 @@
 import { Typography } from 'antd'
+import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import Meal from '../../components/Meal'
 import MealIdea from '../../components/MealIdea'
 const { Title } = Typography
-
+import { useIsAuthLoading } from '../../hooks/useIsAuthLoading'
+import Loading from '../../components/Loading'
 import { RecipeList } from '../../types/types'
 
 const mockedRecipe: RecipeList = [
@@ -64,10 +66,15 @@ const mockedRecipe: RecipeList = [
   },
 ]
 
-const nutrition = () => {
+const Nutrition = () => {
+  useRestrictedPage()
+
   const mealIdeas = mockedRecipe.map((recipe, i) => (
     <MealIdea recipe={recipe} key={i} />
   ))
+
+  if (useIsAuthLoading()) return <Loading />
+
   return (
     <>
       <Title level={2}>Posiłki</Title>
@@ -80,4 +87,4 @@ const nutrition = () => {
   )
 }
 
-export default nutrition
+export default Nutrition
