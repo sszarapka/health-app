@@ -43,7 +43,7 @@ const Navbar = () => {
             : 'item-container'
         }
       >
-        <FontAwesomeIcon icon={['fas', 'utensils']} className="nav__item" />
+        {/* <FontAwesomeIcon icon={['fas', 'utensils']} className="nav__item" /> */}
         Odywianie
       </Link>
       <Link

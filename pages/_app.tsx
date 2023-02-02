@@ -4,13 +4,6 @@ import { initializeApp } from 'firebase/app'
 import { firebaseConfig } from '../firebase-config'
 import Layout from '../components/Layout'
 import WelcomeLayout from '../components/WelcomeLayout'
-import {
-  getAuth,
-  setPersistence,
-  browserSessionPersistence,
-  inMemoryPersistence,
-} from 'firebase/auth'
-import { useAuthState } from 'react-firebase-hooks/auth'
 
 import '../styles/styles.scss'
 export default function App({ Component, pageProps }: AppProps) {

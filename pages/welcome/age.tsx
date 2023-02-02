@@ -1,14 +1,13 @@
 import { Input, message } from 'antd'
 import { useRouter } from 'next/router'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-import { useIsAuthLoading } from '../../hooks/useIsAuthLoading'
+
 import Loading from '../../components/Loading'
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 import { useState } from 'react'
 import { ROUTES } from '../../constants/routes'
 
 const Welcome = () => {
-  useRestrictedPage()
   const router = useRouter()
   const [inputValue, setInputValue] = useState<number>(0)
   const [isFilled, setIsFilled] = useState<boolean>(false)
@@ -28,7 +27,7 @@ const Welcome = () => {
     }
   }
 
-  if (useIsAuthLoading()) return <Loading />
+  if (useRestrictedPage()) return <Loading />
   return (
     <WelcomeWrapper path={ROUTES.GENDER} title="Wiek">
       {contextHolder}

@@ -1,13 +1,11 @@
 import Link from 'next/link'
 import { Card, Image, Typography } from 'antd'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-import { useIsAuthLoading } from '../../hooks/useIsAuthLoading'
 import Loading from '../../components/Loading'
 const { Meta } = Card
 const { Title } = Typography
 const Blog = () => {
-  useRestrictedPage()
-  if (useIsAuthLoading()) return <Loading />
+  if (useRestrictedPage()) return <Loading />
 
   return (
     <section className="blog">

@@ -43,7 +43,7 @@ const Water = ({ numberOfGlasses, waterTarget }: WaterProps) => {
         </Text>
       </div>
       <div className="glasses">
-        {glasses}
+        {/* {glasses} */}
         <PlusCircleOutlined className="water__add" />
       </div>
     </>

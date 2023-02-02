@@ -109,3 +109,7 @@ export interface DangerButtonProps {
   className: string
   onClick?(): void
 }
+
+export type useRestrictedPageProps = {
+  type?: 'login'
+}

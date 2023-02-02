@@ -5,9 +5,7 @@ const { Title } = Typography
 
 const InputNum = ({ title, size = 'small' }: InputNumProps) => {
   return (
-    <section
-      className={size === 'small' ? 'input-section small' : 'input-section'}
-    >
+    <div className={size === 'small' ? 'input-section small' : 'input-section'}>
       <Title level={size === 'small' ? 5 : 4} className="input-section__title">
         {title}
       </Title>
@@ -21,7 +19,7 @@ const InputNum = ({ title, size = 'small' }: InputNumProps) => {
         />
         <PlusCircleFilled className="input-section__plus" />
       </div>
-    </section>
+    </div>
   )
 }
 

@@ -3,7 +3,6 @@ import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import Meal from '../../components/Meal'
 import MealIdea from '../../components/MealIdea'
 const { Title } = Typography
-import { useIsAuthLoading } from '../../hooks/useIsAuthLoading'
 import Loading from '../../components/Loading'
 import { RecipeList } from '../../types/types'
 
@@ -67,13 +66,11 @@ const mockedRecipe: RecipeList = [
 ]
 
 const Nutrition = () => {
-  useRestrictedPage()
-
   const mealIdeas = mockedRecipe.map((recipe, i) => (
     <MealIdea recipe={recipe} key={i} />
   ))
 
-  if (useIsAuthLoading()) return <Loading />
+  if (useRestrictedPage()) return <Loading />
 
   return (
     <>

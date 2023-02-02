@@ -3,13 +3,12 @@ import { Typography } from 'antd'
 import InputNum from '../components/InputNum'
 import ProgressImages from '../components/ProgressImages'
 import { useRestrictedPage } from '../hooks/useRestrictedPage'
-import { useIsAuthLoading } from '../hooks/useIsAuthLoading'
+
 import Loading from '../components/Loading'
 
 const { Title } = Typography
 const Measurements = () => {
-  useRestrictedPage()
-  if (useIsAuthLoading()) return <Loading />
+  if (useRestrictedPage()) return <Loading />
 
   return (
     <>

@@ -1,21 +1,22 @@
-import { Typography, Button } from 'antd'
+import { Typography } from 'antd'
 import { getAuth, signOut } from 'firebase/auth'
 import { ROUTES } from '../constants/routes'
 import { useRouter } from 'next/router'
 import { useRestrictedPage } from '../hooks/useRestrictedPage'
-import { useIsAuthLoading } from '../hooks/useIsAuthLoading'
 import Loading from '../components/Loading'
 import SettingsItem from '../components/SettingsItem'
 const { Title } = Typography
 import DangerButton from '../components/DangerButton'
+
 const Settings = () => {
-  useRestrictedPage()
   const router = useRouter()
   const handleSignOut = () => {
+    localStorage.setItem('accessToken', '')
+
     signOut(getAuth())
     router.push(ROUTES.LOGIN)
   }
-  if (useIsAuthLoading()) return <Loading />
+  if (useRestrictedPage()) return <Loading />
 
   return (
     <section className="settings">
