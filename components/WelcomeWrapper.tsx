@@ -1,6 +1,6 @@
 import { Typography, Button } from 'antd'
+const { Title } = Typography
 import Link from 'next/link'
-const { Title, Text } = Typography
 
 import { WelcomeWrapperProps } from '../types/types'
 

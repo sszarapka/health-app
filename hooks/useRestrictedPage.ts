@@ -1,14 +1,34 @@
 import { useRouter } from 'next/router'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { getAuth } from 'firebase/auth'
-import { useEffect } from 'react'
 import { ROUTES } from '../constants/routes'
+import { useEffect, useState } from 'react'
+import { getAuth } from 'firebase/auth'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 export function useRestrictedPage() {
   const router = useRouter()
+
+  const [isRestricted, setIsRestricted] = useState<boolean>(true)
   const [user, loading] = useAuthState(getAuth())
+  const isLoginPage =
+    router.pathname.includes('login') || router.pathname.includes('logowanie')
 
   useEffect(() => {
-    if (!loading && !user) router.push(ROUTES.LOGIN)
-  }, [user, router, loading])
+    if (typeof window !== 'undefined' && !loading) {
+      if (!user && !isLoginPage) {
+        router.push(ROUTES.LOGIN)
+        setIsRestricted(true)
+      } else if (!user && isLoginPage) {
+        setIsRestricted(false)
+      } else if (user && isLoginPage) {
+        router.push(ROUTES.DASHBOARD)
+        setIsRestricted(true)
+      } else if (!user && isLoginPage) {
+        setIsRestricted(false)
+      } else if (user && !isLoginPage) {
+        setIsRestricted(false)
+      }
+    }
+  }, [isLoginPage, loading, router, user])
+
+  return isRestricted
 }

@@ -1,7 +1,6 @@
-import Link from 'next/link'
 import { Typography } from 'antd'
 const { Text } = Typography
-
+import Link from 'next/link'
 import { MealIdeaProps } from '../types/types'
 
 const MealIdea = ({ recipe, key }: MealIdeaProps) => {

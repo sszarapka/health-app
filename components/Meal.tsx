@@ -1,10 +1,9 @@
 import { Typography } from 'antd'
-import Link from 'next/link'
-const { Text } = Typography
 import { PlusCircleFilled } from '@ant-design/icons'
-import ProductsList from './ProductsList'
-
+const { Text } = Typography
+import Link from 'next/link'
 import { MealProps } from '../types/types'
+import ProductsList from './ProductsList'
 
 const Meal = ({ name }: MealProps) => {
   const mockProducts = [

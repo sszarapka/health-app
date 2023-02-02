@@ -1,16 +1,14 @@
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { ROUTES } from '../../constants/routes'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-import { useIsAuthLoading } from '../../hooks/useIsAuthLoading'
 import Loading from '../../components/Loading'
 import RadioGroup from '../../components/RadioGroup'
-
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 
 const Gender = () => {
-  useRestrictedPage()
   const router = useRouter()
-  const path = '/witaj/waga'
+  const path = ROUTES.WEIGTH
   useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
@@ -25,7 +23,7 @@ const Gender = () => {
       document.removeEventListener('keydown', keyDownHandler)
     }
   }, [router])
-  if (useIsAuthLoading()) return <Loading />
+  if (useRestrictedPage()) return <Loading />
   return (
     <WelcomeWrapper path={path} title="Płeć">
       <RadioGroup values={['Męzczyzna', 'Kobieta']} />

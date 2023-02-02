@@ -1,12 +1,10 @@
 import { Typography } from 'antd'
-import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-import { useIsAuthLoading } from '../../hooks/useIsAuthLoading'
-import Loading from '../../components/Loading'
 const { Title, Paragraph } = Typography
-const Article = () => {
-  useRestrictedPage()
+import { useRestrictedPage } from '../../hooks/useRestrictedPage'
+import Loading from '../../components/Loading'
 
-  if (useIsAuthLoading()) return <Loading />
+const Article = () => {
+  if (useRestrictedPage()) return <Loading />
   return (
     <article className="article">
       <Title level={2}>ĆWICZENIA NA SIŁOWNI DLA POCZĄTKUJĄCYCH?</Title>

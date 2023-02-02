@@ -1,13 +1,10 @@
 import { Typography, Row } from 'antd'
-
 import { PlusCircleOutlined } from '@ant-design/icons'
+const { Title, Text } = Typography
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { fas, faGlassWater } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 library.add(fas, faGlassWater)
-
-const { Title, Text } = Typography
-
 import { WaterProps } from '../types/types'
 
 const Water = ({ numberOfGlasses, waterTarget }: WaterProps) => {
@@ -43,7 +40,7 @@ const Water = ({ numberOfGlasses, waterTarget }: WaterProps) => {
         </Text>
       </div>
       <div className="glasses">
-        {glasses}
+        {/* {glasses} */}
         <PlusCircleOutlined className="water__add" />
       </div>
     </>

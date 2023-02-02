@@ -1,9 +1,8 @@
 import { Typography, Image } from 'antd'
 const { Title, Text, Paragraph } = Typography
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-import { useIsAuthLoading } from '../../hooks/useIsAuthLoading'
-import Loading from '../../components/Loading'
 import { RecipeProps } from '../../types/types'
+import Loading from '../../components/Loading'
 
 const mockedRecipe: RecipeProps = {
   name: 'Naleśniory',
@@ -25,13 +24,12 @@ const mockedRecipe: RecipeProps = {
 }
 
 const Recipe = ({ name, type, ingredients, description }: RecipeProps) => {
-  useRestrictedPage()
   const recipeIngredients = mockedRecipe.ingredients.map((ingredient, i) => (
     <li key={i} className="ingredients__item">
       {i + 1}. {ingredient}
     </li>
   ))
-  if (useIsAuthLoading()) return <Loading />
+  if (useRestrictedPage()) return <Loading />
 
   return (
     <section className="recipe">

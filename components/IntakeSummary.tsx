@@ -1,11 +1,10 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import { Doughnut } from 'react-chartjs-2'
-
-ChartJS.register(ArcElement, Tooltip, Legend)
 import { Progress, Typography } from 'antd'
 const { Text } = Typography
-
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Doughnut } from 'react-chartjs-2'
 import { IntakeSummaryProps } from '../types/types'
+
+ChartJS.register(ArcElement, Tooltip, Legend)
 
 const IntakeSummary = ({ macro }: IntakeSummaryProps) => {
   const { carbs, protein, fat } = macro

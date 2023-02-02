@@ -1,10 +1,9 @@
-import Link from 'next/link'
-import { Image, Typography, Divider, Input, Select, Button } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
+import { Image, Typography, Divider, Input, Select, Button } from 'antd'
 const { Text } = Typography
+import Link from 'next/link'
 import DangerButton from '../components/DangerButton'
 import { ROUTES } from '../constants/routes'
-
 import { ProductActionProps } from '../types/types'
 
 const ProductAction = ({ type }: ProductActionProps) => {

@@ -1,15 +1,12 @@
 import { Typography } from 'antd'
+const { Text } = Typography
 import { ROUTES } from '../../constants/routes'
-import { useIsAuthLoading } from '../../hooks/useIsAuthLoading'
 import Loading from '../../components/Loading'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 
-const { Text } = Typography
-
 const Welcome = () => {
-  useRestrictedPage()
-  if (useIsAuthLoading()) return <Loading />
+  if (useRestrictedPage()) return <Loading />
   return (
     <WelcomeWrapper path={ROUTES.AGE} title="Witaj Nazwa!">
       <div className="welcome__container">

@@ -104,8 +104,16 @@ export interface WelcomeLayoutProps {
   children: React.ReactNode
 }
 
+export type LayoutProps = {
+  children: React.ReactNode
+}
+
 export interface DangerButtonProps {
   children: React.ReactNode
   className: string
   onClick?(): void
+}
+
+export type useRestrictedPageProps = {
+  type?: 'login'
 }

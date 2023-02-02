@@ -1,16 +1,16 @@
-import { useRouter } from 'next/router'
 import {
   PieChartFilled,
-  PieChartOutlined,
   DashboardFilled,
   ReadFilled,
   SettingFilled,
 } from '@ant-design/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { fas, faUtensils } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas, faUtensils } from '@fortawesome/free-solid-svg-icons'
 library.add(fas, faUtensils)
+import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { ROUTES } from '../constants/routes'
 
 const Navbar = () => {
   const path = useRouter().pathname
@@ -18,14 +18,14 @@ const Navbar = () => {
   return (
     <nav className="nav">
       <Link
-        href="/"
+        href={ROUTES.DASHBOARD}
         className={path === '/' ? 'item-container active' : 'item-container'}
       >
         <PieChartFilled className="nav__item" />
         Panel
       </Link>
       <Link
-        href="/pomiary"
+        href={ROUTES.PROGRESS}
         className={
           path.includes('measurements')
             ? 'item-container active'
@@ -36,18 +36,18 @@ const Navbar = () => {
         Postępy
       </Link>
       <Link
-        href="/odzywianie"
+        href={ROUTES.NUTRITION}
         className={
           path.includes('nutrition')
             ? 'item-container active'
             : 'item-container'
         }
       >
-        <FontAwesomeIcon icon={['fas', 'utensils']} className="nav__item" />
+        {/* <FontAwesomeIcon icon={['fas', 'utensils']} className="nav__item" /> */}
         Odywianie
       </Link>
       <Link
-        href="/blog"
+        href={ROUTES.BLOG}
         className={
           path.includes('blog') ? 'item-container active' : 'item-container'
         }
@@ -56,7 +56,7 @@ const Navbar = () => {
         Blog
       </Link>
       <Link
-        href="/ustawienia"
+        href={ROUTES.SETTINGS}
         className={
           path.includes('settings') ? 'item-container active' : 'item-container'
         }
