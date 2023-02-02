@@ -1,11 +1,10 @@
-import { GoogleOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
+import { GoogleOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
-import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-
-import Loading from '../../components/Loading'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { ROUTES } from '../../constants/routes'
+import { useRestrictedPage } from '../../hooks/useRestrictedPage'
+import Loading from '../../components/Loading'
 
 // from database
 let isSurveyFilled = false

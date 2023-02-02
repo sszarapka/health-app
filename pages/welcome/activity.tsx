@@ -1,10 +1,8 @@
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-
 import Loading from '../../components/Loading'
 import RadioGroup from '../../components/RadioGroup'
-
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 
 const Gender = () => {
@@ -19,7 +17,6 @@ const Gender = () => {
       }
     }
     document.addEventListener('keydown', keyDownHandler)
-
     return () => {
       document.removeEventListener('keydown', keyDownHandler)
     }

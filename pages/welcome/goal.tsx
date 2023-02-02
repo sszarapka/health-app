@@ -1,7 +1,6 @@
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-
 import Loading from '../../components/Loading'
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 import RadioGroup from '../../components/RadioGroup'

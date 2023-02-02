@@ -1,15 +1,14 @@
-import { useRouter } from 'next/router'
 import {
   PieChartFilled,
-  PieChartOutlined,
   DashboardFilled,
   ReadFilled,
   SettingFilled,
 } from '@ant-design/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { fas, faUtensils } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas, faUtensils } from '@fortawesome/free-solid-svg-icons'
 library.add(fas, faUtensils)
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 const Navbar = () => {

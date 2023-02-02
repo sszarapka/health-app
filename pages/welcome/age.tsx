@@ -1,11 +1,10 @@
 import { Input, message } from 'antd'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { ROUTES } from '../../constants/routes'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-
 import Loading from '../../components/Loading'
 import WelcomeWrapper from '../../components/WelcomeWrapper'
-import { useState } from 'react'
-import { ROUTES } from '../../constants/routes'
 
 const Welcome = () => {
   const router = useRouter()

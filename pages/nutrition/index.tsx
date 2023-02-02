@@ -1,10 +1,10 @@
 import { Typography } from 'antd'
+const { Title } = Typography
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
+import { RecipeList } from '../../types/types'
 import Meal from '../../components/Meal'
 import MealIdea from '../../components/MealIdea'
-const { Title } = Typography
 import Loading from '../../components/Loading'
-import { RecipeList } from '../../types/types'
 
 const mockedRecipe: RecipeList = [
   {

@@ -1,9 +1,7 @@
-import Link from 'next/link'
-import { Image } from 'antd'
-import { Typography } from 'antd'
 import { RightOutlined, FormOutlined } from '@ant-design/icons'
+import { Image, Typography } from 'antd'
 const { Text } = Typography
-
+import Link from 'next/link'
 import { ProductProps } from '../types/types'
 
 const Product = ({ name, weigth, calories, type }: ProductProps) => {

@@ -1,6 +1,5 @@
-import Product from './Product'
-
 import { ProductsListProps } from '../types/types'
+import Product from './Product'
 
 const ProductsList = ({ products, type }: ProductsListProps) => {
   const productsList = products.map(product => (

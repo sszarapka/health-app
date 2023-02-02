@@ -1,10 +1,9 @@
-import { Typography, Button } from 'antd'
-import WelcomeWrapper from '../../components/WelcomeWrapper'
+import { Typography } from 'antd'
 const { Text, Title } = Typography
-import { ROUTES } from '../../constants/routes'
-
-import Loading from '../../components/Loading'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
+import WelcomeWrapper from '../../components/WelcomeWrapper'
+import { ROUTES } from '../../constants/routes'
+import Loading from '../../components/Loading'
 
 const Start = () => {
   if (useRestrictedPage()) return <Loading />

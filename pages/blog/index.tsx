@@ -1,9 +1,9 @@
-import Link from 'next/link'
 import { Card, Image, Typography } from 'antd'
+const { Title } = Typography
+const { Meta } = Card
+import Link from 'next/link'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import Loading from '../../components/Loading'
-const { Meta } = Card
-const { Title } = Typography
 const Blog = () => {
   if (useRestrictedPage()) return <Loading />
 

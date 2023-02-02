@@ -1,8 +1,8 @@
 import { Typography } from 'antd'
-import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-
-import Loading from '../../components/Loading'
 const { Title, Paragraph } = Typography
+import { useRestrictedPage } from '../../hooks/useRestrictedPage'
+import Loading from '../../components/Loading'
+
 const Article = () => {
   if (useRestrictedPage()) return <Loading />
   return (

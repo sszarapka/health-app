@@ -1,9 +1,8 @@
 import { Typography, Image } from 'antd'
 const { Title, Text, Paragraph } = Typography
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-
-import Loading from '../../components/Loading'
 import { RecipeProps } from '../../types/types'
+import Loading from '../../components/Loading'
 
 const mockedRecipe: RecipeProps = {
   name: 'Naleśniory',

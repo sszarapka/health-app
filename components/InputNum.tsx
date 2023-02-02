@@ -1,7 +1,7 @@
 import { Input, Typography } from 'antd'
 import { PlusCircleFilled, MinusCircleFilled } from '@ant-design/icons'
-import { InputNumProps } from '../types/types'
 const { Title } = Typography
+import { InputNumProps } from '../types/types'
 
 const InputNum = ({ title, size = 'small' }: InputNumProps) => {
   return (

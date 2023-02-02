@@ -1,11 +1,10 @@
 import { Input, Typography } from 'antd'
 import { BarcodeOutlined } from '@ant-design/icons'
-import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-
-import Loading from '../../components/Loading'
-import ProductsList from '../../components/ProductsList'
 const { Search } = Input
 const { Text } = Typography
+import { useRestrictedPage } from '../../hooks/useRestrictedPage'
+import Loading from '../../components/Loading'
+import ProductsList from '../../components/ProductsList'
 
 const FindProduct = () => {
   const mockProducts = [
