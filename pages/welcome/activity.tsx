@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { ROUTES } from '../../constants/routes'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import Loading from '../../components/Loading'
 import RadioGroup from '../../components/RadioGroup'
@@ -7,7 +8,7 @@ import WelcomeWrapper from '../../components/WelcomeWrapper'
 
 const Gender = () => {
   const router = useRouter()
-  const path = '/witaj/zaczynamy'
+  const path = ROUTES.START
   useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent) => {
       if (event.key === 'Enter') {

@@ -33,7 +33,7 @@ export const ROUTES = Object.freeze({
   DASHBOARD: '/',
 
   // PROGRESS PAGE
-  PROGRESS: '/measurements',
+  PROGRESS: '/progress',
 
   // NUTRITION PAGE
   NUTRITION: '/nutrition',

@@ -16,8 +16,8 @@ app.prepare().then(() => {
       case '/':
         app.render(req, res, '/', query)
         break
-      case '/pomiary':
-        app.render(req, res, '/measurements', query)
+      case '/postepy':
+        app.render(req, res, '/progress', query)
         break
       case '/ustawienia':
         app.render(req, res, '/settings', query)

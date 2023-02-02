@@ -5,7 +5,7 @@ import InputNum from '../components/InputNum'
 import ProgressImages from '../components/ProgressImages'
 import Loading from '../components/Loading'
 
-const Measurements = () => {
+const Progress = () => {
   if (useRestrictedPage()) return <Loading />
   return (
     <>
@@ -24,4 +24,4 @@ const Measurements = () => {
   )
 }
 
-export default Measurements
+export default Progress
