@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react'
+
 export interface InputNumProps {
   title: string
   size?: 'small' | 'large'
@@ -33,7 +35,7 @@ export interface SettingsItemProps {
 
 export interface WelcomeWrapperProps {
   children: React.ReactNode
-  path: string
+  handleNext(): void
   title: string
 }
 
@@ -80,6 +82,7 @@ export interface ProductActionProps {
 
 export interface RadioGrupProps {
   values: string[]
+  setInputValue: Dispatch<SetStateAction<string>>
 }
 
 export interface WaterProps {
@@ -116,4 +119,8 @@ export interface DangerButtonProps {
 
 export type useRestrictedPageProps = {
   type?: 'login'
+}
+
+export interface WelcomePageProps {
+  username: string
 }

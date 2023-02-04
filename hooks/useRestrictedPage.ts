@@ -1,3 +1,4 @@
+import Cookies from 'universal-cookie'
 import { useRouter } from 'next/router'
 import { ROUTES } from '../constants/routes'
 import { useEffect, useState } from 'react'
@@ -14,6 +15,9 @@ export function useRestrictedPage() {
 
   useEffect(() => {
     if (typeof window !== 'undefined' && !loading) {
+      const cookies = new Cookies()
+      cookies.set('uid', user?.uid, { path: '/' })
+
       if (!user && !isLoginPage) {
         router.push(ROUTES.LOGIN)
         setIsRestricted(true)
