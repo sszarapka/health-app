@@ -37,13 +37,18 @@ const IntakeSummary = ({ macro }: IntakeSummaryProps) => {
     events: [],
   }
 
+  const currentCalories =
+    carbs.current * 4 + protein.current * 4 + fat.current * 9
+
+  const totalCalories = carbs.target * 4 + protein.target * 4 + fat.target * 9
+
   return (
     <section className="intake-summary">
       <div className="intake-summary__chart">
         <Doughnut data={data} options={options} />
         <div className="chart__calories">
-          <Text className="calories__current">750</Text>
-          <Text className="calories__target">/ 2200kcal</Text>
+          <Text className="calories__current">{currentCalories}</Text>
+          <Text className="calories__target">/ {totalCalories}kcal</Text>
         </div>
       </div>
       <div className="intake-summary__macro">

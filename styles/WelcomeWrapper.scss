@@ -22,12 +22,10 @@
     font-size: $font-xl;
   }
 
-  .welcome-wrapper__next {
-    text-align: right;
-    .next__button {
-      color: $primary;
-      font-weight: 600;
-      width: 100px;
-    }
+  .next__button {
+    color: $primary;
+    font-weight: 600;
+    width: 100px;
+    align-self: flex-end;
   }
 }

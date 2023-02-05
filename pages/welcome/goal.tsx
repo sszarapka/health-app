@@ -1,5 +1,8 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { getDatabase, ref, set } from 'firebase/database'
+import { getAuth } from 'firebase/auth'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import { ROUTES } from '../../constants/routes'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import Loading from '../../components/Loading'
@@ -8,25 +11,35 @@ import RadioGroup from '../../components/RadioGroup'
 
 const Goal = () => {
   const router = useRouter()
-  const path = ROUTES.ACTIVITY
+
+  const [inputValue, setInputValue] = useState<string>('Męzczyzna')
+  const [user] = useAuthState(getAuth())
+  const userUid = user?.uid
+
+  const handleNext = useCallback(() => {
+    set(ref(getDatabase(), `users/${userUid}/generalInfo/goal`), inputValue)
+    router.push(ROUTES.ACTIVITY)
+  }, [inputValue, router, userUid])
+
   useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
         event.preventDefault()
-
-        router.push(path)
+        handleNext()
       }
     }
     document.addEventListener('keydown', keyDownHandler)
-
     return () => {
       document.removeEventListener('keydown', keyDownHandler)
     }
-  }, [router])
+  }, [handleNext, router])
   if (useRestrictedPage()) return <Loading />
   return (
-    <WelcomeWrapper path={path} title="Cel">
-      <RadioGroup values={['Schudnąć', 'Zbudować mięśnie', 'Utrzymać wagę']} />
+    <WelcomeWrapper handleNext={handleNext} title="Cel">
+      <RadioGroup
+        values={['Schudnąć', 'Zbudować mięśnie', 'Utrzymać wagę']}
+        setInputValue={setInputValue}
+      />
     </WelcomeWrapper>
   )
 }

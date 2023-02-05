@@ -1,24 +1,40 @@
-import { Input } from 'antd'
+import { InputNumber } from 'antd'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { getDatabase, ref, set } from 'firebase/database'
+import { getAuth } from 'firebase/auth'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import { ROUTES } from '../../constants/routes'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import Loading from '../../components/Loading'
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 
-const Welcome = () => {
+const Weigth = () => {
   const router = useRouter()
-  const path = ROUTES.GOAL
+
+  const [inputValue, setInputValue] = useState<number>(0)
+  const [user] = useAuthState(getAuth())
+  const userUid = user?.uid
+
+  const handleNext = () => {
+    set(ref(getDatabase(), `users/${userUid}/generalInfo/weigth`), inputValue)
+    inputValue > 0 && router.push(ROUTES.GOAL)
+  }
   if (useRestrictedPage()) return <Loading />
   return (
-    <WelcomeWrapper path={path} title="Waga">
-      <Input
+    <WelcomeWrapper handleNext={handleNext} title="Waga">
+      <InputNumber
         type="number"
         className="welcome__number"
         size="large"
-        onPressEnter={() => router.push(path)}
+        onPressEnter={handleNext}
+        min={1}
+        max={999}
+        step={1}
+        onChange={value => value && setInputValue(value)}
       />
     </WelcomeWrapper>
   )
 }
 
-export default Welcome
+export default Weigth

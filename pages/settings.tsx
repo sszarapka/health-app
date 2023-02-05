@@ -1,5 +1,6 @@
 import { Typography } from 'antd'
 const { Title } = Typography
+import Cookies from 'universal-cookie'
 import { useRouter } from 'next/router'
 import { getAuth, signOut } from 'firebase/auth'
 import { ROUTES } from '../constants/routes'
@@ -11,6 +12,9 @@ import DangerButton from '../components/DangerButton'
 const Settings = () => {
   const router = useRouter()
   const handleSignOut = () => {
+    const cookies = new Cookies()
+    cookies.remove('uid', { path: '/' })
+
     signOut(getAuth())
     router.push(ROUTES.LOGIN)
   }

@@ -1,44 +1,41 @@
-import { Input, message } from 'antd'
+import { InputNumber } from 'antd'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { getDatabase, ref, set } from 'firebase/database'
+import { getAuth } from 'firebase/auth'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import { ROUTES } from '../../constants/routes'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import Loading from '../../components/Loading'
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 
-const Welcome = () => {
+const Age = () => {
   const router = useRouter()
+
   const [inputValue, setInputValue] = useState<number>(0)
-  const [isFilled, setIsFilled] = useState<boolean>(false)
-  const [messageApi, contextHolder] = message.useMessage()
-  const error = () => {
-    messageApi.open({
-      type: 'error',
-      content: 'Wiek musi być większy od 0',
-    })
-  }
+  const [user] = useAuthState(getAuth())
+  const userUid = user?.uid
+
   const handleNext = () => {
-    if (inputValue > 0) {
-      // send to DB
-      router.push(ROUTES.GENDER)
-    } else {
-      error()
-    }
+    set(ref(getDatabase(), `users/${userUid}/generalInfo/age`), inputValue)
+    inputValue > 0 && router.push(ROUTES.GENDER)
   }
 
   if (useRestrictedPage()) return <Loading />
   return (
-    <WelcomeWrapper path={ROUTES.GENDER} title="Wiek">
-      {contextHolder}
-      <Input
+    <WelcomeWrapper handleNext={handleNext} title="Wiek">
+      <InputNumber
         type="number"
         className="welcome__number"
         size="large"
         onPressEnter={handleNext}
-        onChange={e => setInputValue(parseInt(e.target.value))}
+        min={1}
+        max={999}
+        step={1}
+        onChange={value => value && setInputValue(value)}
       />
     </WelcomeWrapper>
   )
 }
 
-export default Welcome
+export default Age

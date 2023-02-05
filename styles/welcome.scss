@@ -17,8 +17,10 @@
 .welcome__number {
   width: 100px;
   align-self: center;
-  text-align: center;
   font-size: $font-xl;
+  .ant-input-number-input {
+    text-align: center;
+  }
 }
 
 .welcome__select-container {
