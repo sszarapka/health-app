@@ -11,7 +11,7 @@ import WelcomeWrapper from '../../components/WelcomeWrapper'
 
 const Gender = () => {
   const router = useRouter()
-  const path = ROUTES.WEIGTH
+  const path = ROUTES.AGE
   const [inputValue, setInputValue] = useState<string>('Męzczyzna')
   const [user] = useAuthState(getAuth())
   const userUid = user?.uid

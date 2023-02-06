@@ -9,7 +9,7 @@ import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import Loading from '../../components/Loading'
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 
-const Weigth = () => {
+const Height = () => {
   const router = useRouter()
 
   const [inputValue, setInputValue] = useState<number>(0)
@@ -17,12 +17,13 @@ const Weigth = () => {
   const userUid = user?.uid
 
   const handleNext = () => {
-    set(ref(getDatabase(), `users/${userUid}/generalInfo/weigth`), inputValue)
-    inputValue > 0 && router.push(ROUTES.HEIGHT)
+    set(ref(getDatabase(), `users/${userUid}/generalInfo/height`), inputValue)
+    inputValue > 0 && router.push(ROUTES.GOAL)
   }
+
   if (useRestrictedPage()) return <Loading />
   return (
-    <WelcomeWrapper handleNext={handleNext} title="Waga">
+    <WelcomeWrapper handleNext={handleNext} title="Wzrost">
       <InputNumber
         type="number"
         className="welcome__number"
@@ -37,4 +38,4 @@ const Weigth = () => {
   )
 }
 
-export default Weigth
+export default Height

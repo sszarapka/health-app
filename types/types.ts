@@ -2,7 +2,9 @@ import { Dispatch, SetStateAction } from 'react'
 
 export interface InputNumProps {
   title: string
+  dbTitle: string
   size?: 'small' | 'large'
+  defaultValue: number
 }
 export interface MealProps {
   name: 'Śniadanie' | 'Obiad' | 'Kolacja'
@@ -123,4 +125,28 @@ export type useRestrictedPageProps = {
 
 export interface WelcomePageProps {
   username: string
+}
+
+export interface useCalculateTargetValuesProps {
+  age: number
+  weigth: number
+  goal: string
+  activity: string
+  gender: string
+  height: number
+}
+
+export interface DashboardPageProps {
+  userData: {
+    calorieTarget: number
+    carbsTarget: number
+    proteinTarget: number
+    fatTarget: number
+    waterTarget: number
+    drunkWater: number
+    carbsCurrent: number
+    proteinCurrent: number
+    fatCurrent: number
+    weigth: number
+  }
 }

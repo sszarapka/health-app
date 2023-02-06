@@ -18,7 +18,7 @@ const Age = () => {
 
   const handleNext = () => {
     set(ref(getDatabase(), `users/${userUid}/generalInfo/age`), inputValue)
-    inputValue > 0 && router.push(ROUTES.GENDER)
+    inputValue > 0 && router.push(ROUTES.WEIGTH)
   }
 
   if (useRestrictedPage()) return <Loading />
