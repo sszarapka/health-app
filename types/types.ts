@@ -26,13 +26,17 @@ export interface ProductsListProps {
   type: 'add' | 'edit'
 }
 
+interface Option {
+  value: string
+  label: string
+}
+
 export interface SettingsItemProps {
   label: string
+  dbLabel: string
   type: 'select' | 'number' | 'switch'
-  options?: {
-    value: string
-    label: string
-  }[]
+  options?: Option[]
+  defaultValue: string | number
 }
 
 export interface WelcomeWrapperProps {
@@ -148,5 +152,39 @@ export interface DashboardPageProps {
     proteinCurrent: number
     fatCurrent: number
     weigth: number
+  }
+}
+
+export interface ProgressPageProps {
+  userData: {
+    arm: number
+    chest: number
+    hips: number
+    kalf: number
+    neck: number
+    thigh: number
+    waist: number
+  }
+}
+
+export interface SettingsPageProps {
+  userData: {
+    age: number
+    weigth: number
+    goal: string
+    activity: string
+    gender: string
+    height: number
+  }
+}
+
+export interface StartPageProps {
+  userData: {
+    age: number
+    weigth: number
+    goal: string
+    activity: string
+    gender: string
+    height: number
   }
 }

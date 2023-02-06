@@ -8,6 +8,8 @@ import IntakeSummary from '../components/IntakeSummary'
 import Water from '../components/Water'
 
 const Dashboard = ({ userData }: DashboardPageProps) => {
+  if (useRestrictedPage() || userData === null) return <Loading />
+
   const macro = {
     carbs: {
       current: userData.carbsCurrent,
@@ -23,7 +25,6 @@ const Dashboard = ({ userData }: DashboardPageProps) => {
     },
   }
 
-  if (useRestrictedPage()) return <Loading />
   return (
     <>
       <InputNum
@@ -47,26 +48,29 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const dbRef = ref(getDatabase())
   const currentUid = context.req.cookies.uid
 
-  const userData = await get(child(dbRef, `users/${currentUid}`))
-    .then(snapshot => {
-      if (snapshot.exists()) {
-        return {
-          calorieTarget: snapshot.val().nutrition.calorieTarget,
-          carbsTarget: snapshot.val().nutrition.carbsTarget,
-          proteinTarget: snapshot.val().nutrition.proteinTarget,
-          fatTarget: snapshot.val().nutrition.fatTarget,
-          waterTarget: snapshot.val().nutrition.waterTarget,
-          carbsCurrent: snapshot.val().nutrition.carbsCurrent,
-          proteinCurrent: snapshot.val().nutrition.proteinCurrent,
-          fatCurrent: snapshot.val().nutrition.fatCurrent,
-          drunkWater: snapshot.val().nutrition.drunkWater,
-          weigth: snapshot.val().generalInfo.weigth,
+  let userData
+  if (currentUid) {
+    userData = await get(child(dbRef, `users/${currentUid}`))
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          return {
+            calorieTarget: snapshot.val().nutrition.calorieTarget || 0,
+            carbsTarget: snapshot.val().nutrition.carbsTarget || 0,
+            proteinTarget: snapshot.val().nutrition.proteinTarget || 0,
+            fatTarget: snapshot.val().nutrition.fatTarget || 0,
+            waterTarget: snapshot.val().nutrition.waterTarget || 0,
+            carbsCurrent: snapshot.val().nutrition.carbsCurrent || 0,
+            proteinCurrent: snapshot.val().nutrition.proteinCurrent || 0,
+            fatCurrent: snapshot.val().nutrition.fatCurrent || 0,
+            drunkWater: snapshot.val().nutrition.drunkWater || 0,
+            weigth: snapshot.val().generalInfo.weigth || 0,
+          }
         }
-      }
-    })
-    .catch(error => {
-      console.error(error)
-    })
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  } else userData = null
 
   return {
     props: { userData },

@@ -1,5 +1,6 @@
 import { Typography } from 'antd'
 const { Text } = Typography
+import { useCallback, useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { getDatabase, ref, child, get } from 'firebase/database'
@@ -11,8 +12,22 @@ import WelcomeWrapper from '../../components/WelcomeWrapper'
 
 const Welcome = ({ username }: WelcomePageProps) => {
   const router = useRouter()
-  const handleNext = () => router.push(ROUTES.GENDER)
-  if (useRestrictedPage()) return <Loading />
+  const handleNext = useCallback(() => router.push(ROUTES.GENDER), [router])
+
+  useEffect(() => {
+    const keyDownHandler = (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        event.preventDefault()
+        handleNext()
+      }
+    }
+    document.addEventListener('keydown', keyDownHandler)
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler)
+    }
+  }, [handleNext, router])
+
+  if (useRestrictedPage() || !username) return <Loading />
   return (
     <WelcomeWrapper handleNext={handleNext} title={`Witaj ${username}`}>
       <div className="welcome__container">
@@ -34,16 +49,19 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const dbRef = ref(getDatabase())
   const currentUid = context.req.cookies.uid
 
-  const username = await get(child(dbRef, `users/${currentUid}`))
-    .then(snapshot => {
-      if (snapshot.exists()) {
-        const name: string = snapshot.val().name
-        return name
-      }
-    })
-    .catch(error => {
-      console.error(error)
-    })
+  let username
+  if (currentUid) {
+    username = await get(child(dbRef, `users/${currentUid}`))
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          const name: string = snapshot.val().name
+          return name
+        }
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  } else username = null
 
   return {
     props: { username },

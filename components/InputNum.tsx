@@ -23,6 +23,7 @@ const InputNum = ({
     if (type === OperationType.DECREMENT)
       setValue(prev => Math.round((prev - 0.1) * 10) / 10)
   }
+
   const handleChangeWithInput = (value: number) => {
     setValue(Math.round(value * 10) / 10)
   }
@@ -50,7 +51,7 @@ const InputNum = ({
           type="number"
           size="large"
           className="input-section__input"
-          value={Number(value.toFixed(1))}
+          value={Number(Number(value).toFixed(1))}
           min={1}
           max={999}
           controls={false}

@@ -31,7 +31,6 @@ const LogIn = () => {
             if (snapshot.exists()) {
               const isSurveyFilled: boolean = snapshot.val().isSurveyFilled
               const path = isSurveyFilled ? ROUTES.DASHBOARD : ROUTES.WELCOME
-              console.log(isSurveyFilled)
               if (!isRouterUsed) {
                 router.push(path)
                 setIsRouterUsed(true)

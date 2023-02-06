@@ -4,8 +4,6 @@ import { getDatabase, ref, set } from 'firebase/database'
 import { getAuth } from 'firebase/auth'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { ROUTES } from '../../constants/routes'
-import { useRestrictedPage } from '../../hooks/useRestrictedPage'
-import Loading from '../../components/Loading'
 import RadioGroup from '../../components/RadioGroup'
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 
@@ -33,7 +31,7 @@ const Gender = () => {
       document.removeEventListener('keydown', keyDownHandler)
     }
   }, [handleNext, router])
-  if (useRestrictedPage()) return <Loading />
+
   return (
     <WelcomeWrapper handleNext={handleNext} title="Płeć">
       <RadioGroup
