@@ -4,9 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { getDatabase, ref, child, get, set } from 'firebase/database'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { useAuthState } from 'react-firebase-hooks/auth'
 import { ROUTES } from '../../constants/routes'
-
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import Loading from '../../components/Loading'
 

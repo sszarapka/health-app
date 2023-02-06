@@ -55,6 +55,9 @@ app.prepare().then(() => {
       case '/witaj/wiek':
         app.render(req, res, '/welcome/age', query)
         break
+      case '/witaj/wzrost':
+        app.render(req, res, '/welcome/height', query)
+        break
       case '/witaj/plec':
         app.render(req, res, '/welcome/gender', query)
         break

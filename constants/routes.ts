@@ -19,13 +19,14 @@ export const ROUTES = Object.freeze({
 
   // WELCOME PAGE
   WELCOME: '/witaj',
-  ACTIVITY: '/witaj/aktywnosc',
-  GOAL: '/witaj/cel',
-  LOGIN: '/witaj/logowanie',
   GENDER: '/witaj/plec',
-  WEIGTH: '/witaj/waga',
   AGE: '/witaj/wiek',
+  WEIGTH: '/witaj/waga',
+  HEIGHT: '/witaj/wzrost',
+  GOAL: '/witaj/cel',
+  ACTIVITY: '/witaj/aktywnosc',
   START: '/witaj/zaczynamy',
+  LOGIN: '/witaj/logowanie',
 })
 
 // export const ROUTES = Object.freeze({

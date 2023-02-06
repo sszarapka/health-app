@@ -34,7 +34,7 @@ export function useRestrictedPage() {
         .catch(error => {
           alert(error)
         })
-      console.log(isSurveyFilled)
+
       if (isSurveyFilled === undefined && !isLoginPage) setIsRestricted(true)
       else if (isSurveyFilled === false && !isWelcomePage) {
         setIsRestricted(true)

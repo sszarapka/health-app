@@ -11,7 +11,7 @@ import WelcomeWrapper from '../../components/WelcomeWrapper'
 
 const Welcome = ({ username }: WelcomePageProps) => {
   const router = useRouter()
-  const handleNext = () => router.push(ROUTES.AGE)
+  const handleNext = () => router.push(ROUTES.GENDER)
   if (useRestrictedPage()) return <Loading />
   return (
     <WelcomeWrapper handleNext={handleNext} title={`Witaj ${username}`}>

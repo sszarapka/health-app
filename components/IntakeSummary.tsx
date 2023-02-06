@@ -9,12 +9,20 @@ ChartJS.register(ArcElement, Tooltip, Legend)
 const IntakeSummary = ({ macro }: IntakeSummaryProps) => {
   const { carbs, protein, fat } = macro
 
+  const currentCalories =
+    carbs.current * 4 + protein.current * 4 + fat.current * 9
+
+  const totalCalories = carbs.target * 4 + protein.target * 4 + fat.target * 9
+
   const data = {
     labels: ['Węglowodany', 'Białka', 'Tłuszcze'],
     datasets: [
       {
         label: 'g',
-        data: [carbs.current, protein.current, fat.current],
+        data:
+          currentCalories === 0
+            ? [carbs.target, protein.target, fat.target]
+            : [carbs.current, protein.current, fat.current],
         backgroundColor: ['#fdcb00', '#6626dc', '#fd084a'],
         borderRadius: 20,
         borderWidth: 3,
@@ -36,11 +44,6 @@ const IntakeSummary = ({ macro }: IntakeSummaryProps) => {
     tooltipEnabled: false,
     events: [],
   }
-
-  const currentCalories =
-    carbs.current * 4 + protein.current * 4 + fat.current * 9
-
-  const totalCalories = carbs.target * 4 + protein.target * 4 + fat.target * 9
 
   return (
     <section className="intake-summary">

@@ -2,22 +2,69 @@ import { Typography } from 'antd'
 const { Text, Title } = Typography
 import { useCallback, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { getDatabase, ref, set } from 'firebase/database'
-import { getAuth } from 'firebase/auth'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { child, get, getDatabase, ref, set } from 'firebase/database'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
+import { useCalculateTargetValues } from '../../hooks/useCalculateTargetValues'
+import { useUser } from '../../hooks/useUser'
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 import { ROUTES } from '../../constants/routes'
 import Loading from '../../components/Loading'
+import { GetServerSideProps } from 'next'
 
-const Start = () => {
+interface StartPageProps {
+  userData: {
+    age: number
+    weigth: number
+    goal: string
+    activity: string
+    gender: string
+    height: number
+  }
+}
+
+const Start = ({ userData }: StartPageProps) => {
   const router = useRouter()
-  const [user] = useAuthState(getAuth())
-  const userUid = user?.uid
+  const user = useUser()
+  const { waterTarget, calorieTarget, carbsTarget, proteinTarget, fatTarget } =
+    useCalculateTargetValues(userData)
+
   const handleNext = useCallback(() => {
-    set(ref(getDatabase(), `users/${userUid}/isSurveyFilled`), true)
+    if (userData)
+      set(ref(getDatabase(), `users/${user?.uid}/isSurveyFilled`), true)
+
+    set(
+      ref(getDatabase(), `users/${user?.uid}/nutrition/waterTarget`),
+      waterTarget
+    )
+    set(
+      ref(getDatabase(), `users/${user?.uid}/nutrition/calorieTarget`),
+      calorieTarget
+    )
+    set(
+      ref(getDatabase(), `users/${user?.uid}/nutrition/carbsTarget`),
+      carbsTarget
+    )
+    set(
+      ref(getDatabase(), `users/${user?.uid}/nutrition/proteinTarget`),
+      proteinTarget
+    )
+    set(ref(getDatabase(), `users/${user?.uid}/nutrition/fatTarget`), fatTarget)
+
+    set(ref(getDatabase(), `users/${user?.uid}/nutrition/carbsCurrent`), 0)
+    set(ref(getDatabase(), `users/${user?.uid}/nutrition/proteinCurrent`), 0)
+    set(ref(getDatabase(), `users/${user?.uid}/nutrition/fatCurrent`), 0)
+
     router.push(ROUTES.DASHBOARD)
-  }, [router, userUid])
+  }, [
+    calorieTarget,
+    carbsTarget,
+    fatTarget,
+    proteinTarget,
+    router,
+    user?.uid,
+    userData,
+    waterTarget,
+  ])
 
   useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent) => {
@@ -46,3 +93,29 @@ const Start = () => {
 }
 
 export default Start
+
+export const getServerSideProps: GetServerSideProps = async context => {
+  const dbRef = ref(getDatabase())
+  const currentUid = context.req.cookies.uid
+
+  const userData = await get(child(dbRef, `users/${currentUid}`))
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        return {
+          age: snapshot.val().generalInfo.age,
+          weigth: snapshot.val().generalInfo.weigth,
+          goal: snapshot.val().generalInfo.goal,
+          activity: snapshot.val().generalInfo.activity,
+          gender: snapshot.val().generalInfo.gender,
+          height: snapshot.val().generalInfo.height,
+        }
+      }
+    })
+    .catch(error => {
+      console.error(error)
+    })
+
+  return {
+    props: { userData },
+  }
+}
