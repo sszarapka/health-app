@@ -1,14 +1,12 @@
 import { GetServerSideProps } from 'next'
-import { ref, getDatabase, get, child, set } from 'firebase/database'
+import { ref, getDatabase, get, child } from 'firebase/database'
 import { useRestrictedPage } from '../hooks/useRestrictedPage'
+import { useCalculateTargetValues } from '../hooks/useCalculateTargetValues'
 import { DashboardPageProps } from '../types/types'
 import Loading from '../components/Loading'
 import InputNum from '../components/InputNum'
 import IntakeSummary from '../components/IntakeSummary'
 import Water from '../components/Water'
-import { useEffect, useState } from 'react'
-import { useCalculateTargetValues } from '../hooks/useCalculateTargetValues'
-import { useUser } from '../hooks/useUser'
 
 const Dashboard = ({ userData }: DashboardPageProps) => {
   const dataForCalculations = {
