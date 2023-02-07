@@ -1,6 +1,6 @@
 import { Typography } from 'antd'
 const { Title } = Typography
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Cookies from 'universal-cookie'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
@@ -22,6 +22,7 @@ const Settings = ({ userData }: SettingsPageProps) => {
   const { waterTarget, calorieTarget, carbsTarget, proteinTarget, fatTarget } =
     useCalculateTargetValues(userData)
 
+  const [valueChanged, setValueChanged] = useState<boolean>(false)
   const handleSignOut = () => {
     const cookies = new Cookies()
     cookies.remove('uid', { path: '/' })
@@ -53,7 +54,15 @@ const Settings = ({ userData }: SettingsPageProps) => {
         fatTarget
       )
     }
-  })
+  }, [
+    calorieTarget,
+    carbsTarget,
+    fatTarget,
+    proteinTarget,
+    user,
+    valueChanged,
+    waterTarget,
+  ])
 
   if (useRestrictedPage() || !userData) return <Loading />
   return (
@@ -70,24 +79,28 @@ const Settings = ({ userData }: SettingsPageProps) => {
             { label: 'Kobieta', value: 'Kobieta' },
           ]}
           defaultValue={userData.gender}
+          setValueChanged={setValueChanged}
         />
         <SettingsItem
           label="Wiek"
           dbLabel="age"
           type="number"
           defaultValue={userData.age}
+          setValueChanged={setValueChanged}
         />
         <SettingsItem
           label="Waga"
           dbLabel="weigth"
           type="number"
           defaultValue={userData.weigth}
+          setValueChanged={setValueChanged}
         />
         <SettingsItem
           label="Wzrost"
           dbLabel="height"
           type="number"
           defaultValue={userData.height}
+          setValueChanged={setValueChanged}
         />
 
         <SettingsItem
@@ -99,6 +112,7 @@ const Settings = ({ userData }: SettingsPageProps) => {
             { label: 'Zgrubnąć', value: 'Zgrubnąć' },
           ]}
           defaultValue={userData.goal}
+          setValueChanged={setValueChanged}
         />
         <SettingsItem
           label="Aktywność"
@@ -110,6 +124,7 @@ const Settings = ({ userData }: SettingsPageProps) => {
             { label: 'Wysoka', value: 'Wysoka' },
           ]}
           defaultValue={userData.activity}
+          setValueChanged={setValueChanged}
         />
 
         {/* <SettingsItem label="Tryb ciemny" type="switch" defaultValue={3}/> */}
@@ -124,11 +139,11 @@ const Settings = ({ userData }: SettingsPageProps) => {
 export default Settings
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const dbRef = ref(getDatabase())
   const currentUid = context.req.cookies.uid
 
   let userData
   if (currentUid) {
+    const dbRef = ref(getDatabase())
     userData = await get(child(dbRef, `users/${currentUid}`))
       .then(snapshot => {
         if (snapshot.exists()) {

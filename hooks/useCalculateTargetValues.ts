@@ -71,7 +71,7 @@ export function useCalculateTargetValues(
       PROTEIN_CONSTANT = 2
       FAT_CONSTANT = 0.25
   }
-  const waterTarget = weigth * WATER_PER_KILO
+  const waterTarget = Math.floor(weigth * WATER_PER_KILO)
 
   const fatTarget = Math.floor(
     (calorieTarget * FAT_CONSTANT) / CALORIES_IN_GRAM_OF_FAT

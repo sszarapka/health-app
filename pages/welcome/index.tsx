@@ -46,11 +46,11 @@ const Welcome = ({ username }: WelcomePageProps) => {
 export default Welcome
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const dbRef = ref(getDatabase())
   const currentUid = context.req.cookies.uid
 
   let username
   if (currentUid) {
+    const dbRef = ref(getDatabase())
     username = await get(child(dbRef, `users/${currentUid}`))
       .then(snapshot => {
         if (snapshot.exists()) {

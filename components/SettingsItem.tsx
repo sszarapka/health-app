@@ -2,6 +2,7 @@ import { Input, Typography, Select, Switch } from 'antd'
 import { set, ref, getDatabase } from 'firebase/database'
 const { Text } = Typography
 import { useEffect, useState } from 'react'
+import { useCalculateTargetValues } from '../hooks/useCalculateTargetValues'
 import { useUser } from '../hooks/useUser'
 import { SettingsItemProps } from '../types/types'
 
@@ -14,6 +15,18 @@ const SettingsItem = ({
 }: SettingsItemProps) => {
   const [value, setValue] = useState<string | number>(defaultValue)
   const user = useUser()
+
+  const handleStringChange = (value: string) => {
+    if (value) {
+      setValue(value)
+    }
+  }
+  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (value > 0 && value < 1000) {
+      setValue(Number(e.target.value))
+    }
+  }
+
   useEffect(() => {
     set(ref(getDatabase(), `users/${user?.uid}/generalInfo/${dbLabel}`), value)
   }, [dbLabel, user?.uid, value])
@@ -29,14 +42,14 @@ const SettingsItem = ({
           defaultActiveFirstOption={true}
           defaultValue={defaultValue}
           size="large"
-          onChange={value => value && setValue(value)}
+          onChange={value => handleStringChange(value as string)}
         />
       ) : type === 'number' ? (
         <Input
           type="number"
           className="settings-item__input number"
           defaultValue={defaultValue as number}
-          onBlur={e => setValue(Number(e.target.value))}
+          onBlur={e => handleNumberChange(e)}
         />
       ) : (
         <Switch defaultChecked className="settings-item__switch" />

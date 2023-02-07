@@ -37,6 +37,7 @@ export interface SettingsItemProps {
   type: 'select' | 'number' | 'switch'
   options?: Option[]
   defaultValue: string | number
+  setValueChanged: Dispatch<SetStateAction<boolean>>
 }
 
 export interface WelcomeWrapperProps {
@@ -123,10 +124,6 @@ export interface DangerButtonProps {
   onClick?(): void
 }
 
-export type useRestrictedPageProps = {
-  type?: 'login'
-}
-
 export interface WelcomePageProps {
   username: string
 }
@@ -142,16 +139,16 @@ export interface useCalculateTargetValuesProps {
 
 export interface DashboardPageProps {
   userData: {
-    calorieTarget: number
-    carbsTarget: number
-    proteinTarget: number
-    fatTarget: number
-    waterTarget: number
     drunkWater: number
     carbsCurrent: number
     proteinCurrent: number
     fatCurrent: number
     weigth: number
+    age: number
+    height: number
+    goal: string
+    activity: string
+    gender: string
   }
 }
 
