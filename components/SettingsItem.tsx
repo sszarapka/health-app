@@ -1,8 +1,7 @@
-import { Input, Typography, Select, Switch } from 'antd'
+import { InputNumber, Typography, Select, Switch } from 'antd'
 import { set, ref, getDatabase } from 'firebase/database'
 const { Text } = Typography
 import { useEffect, useState } from 'react'
-import { useCalculateTargetValues } from '../hooks/useCalculateTargetValues'
 import { useUser } from '../hooks/useUser'
 import { SettingsItemProps } from '../types/types'
 
@@ -22,8 +21,11 @@ const SettingsItem = ({
     }
   }
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (value > 0 && value < 1000) {
-      setValue(Number(e.target.value))
+    const newValue: number = parseFloat(e.target.value)
+    if (newValue >= 0 && newValue < 1000) {
+      dbLabel === 'age'
+        ? setValue(Math.floor(newValue))
+        : setValue(newValue.toFixed(1))
     }
   }
 
@@ -45,11 +47,14 @@ const SettingsItem = ({
           onChange={value => handleStringChange(value as string)}
         />
       ) : type === 'number' ? (
-        <Input
+        <InputNumber
           type="number"
           className="settings-item__input number"
           defaultValue={defaultValue as number}
+          value={value}
+          controls={false}
           onBlur={e => handleNumberChange(e)}
+          size="large"
         />
       ) : (
         <Switch defaultChecked className="settings-item__switch" />

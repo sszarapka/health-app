@@ -127,7 +127,7 @@ const Settings = ({ userData }: SettingsPageProps) => {
           setValueChanged={setValueChanged}
         />
 
-        {/* <SettingsItem label="Tryb ciemny" type="switch" defaultValue={3}/> */}
+        {/* <SettingsItem label="Tryb ciemny" type="switch" defaultValue={3} /> */}
       </div>
       <DangerButton className="settings__log-out" onClick={handleSignOut}>
         Wyloguj się

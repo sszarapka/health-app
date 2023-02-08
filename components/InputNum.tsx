@@ -18,16 +18,18 @@ const InputNum = ({
   const [value, setValue] = useState<number>(defaultValue)
 
   const handleChangeWithButtons = (type: OperationType) => {
-    if (value > 0 && value < 1000) {
+    if (value >= 0 && value < 1000) {
       if (type === OperationType.INCREMENT)
         setValue(prev => Math.round((prev + 0.1) * 10) / 10)
+    }
+    if (value > 0 && value < 1000) {
       if (type === OperationType.DECREMENT)
         setValue(prev => Math.round((prev - 0.1) * 10) / 10)
     }
   }
 
   const handleChangeWithInput = (value: number) => {
-    value > 0 && value < 1000 && setValue(Math.round(value * 10) / 10)
+    value >= 0 && value < 1000 && setValue(Math.round(value * 10) / 10)
   }
 
   let timeRef = useRef<NodeJS.Timeout>()
@@ -60,8 +62,6 @@ const InputNum = ({
           size="large"
           className="input-section__input"
           value={Number(Number(value).toFixed(1))}
-          min={1}
-          max={999}
           step={1}
           controls={false}
           onBlur={e => handleChangeWithInput(Number(e.target.value))}
