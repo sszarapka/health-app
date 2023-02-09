@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { initializeApp, getApps, getApp } from 'firebase/app'
 import { firebaseConfig } from '../firebase-config'
-
 import Layout from '../components/Layout'
 import WelcomeLayout from '../components/WelcomeLayout'
 

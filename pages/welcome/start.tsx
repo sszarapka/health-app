@@ -1,26 +1,16 @@
 import { Typography } from 'antd'
 const { Text, Title } = Typography
 import { useCallback, useEffect } from 'react'
+import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { child, get, getDatabase, ref, set } from 'firebase/database'
-import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import { useCalculateTargetValues } from '../../hooks/useCalculateTargetValues'
+import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import { useUser } from '../../hooks/useUser'
+import { StartPageProps } from '../../types/types'
 import WelcomeWrapper from '../../components/WelcomeWrapper'
 import { ROUTES } from '../../constants/routes'
 import Loading from '../../components/Loading'
-import { GetServerSideProps } from 'next'
-
-interface StartPageProps {
-  userData: {
-    age: number
-    weigth: number
-    goal: string
-    activity: string
-    gender: string
-    height: number
-  }
-}
 
 const Start = ({ userData }: StartPageProps) => {
   const router = useRouter()
@@ -29,7 +19,14 @@ const Start = ({ userData }: StartPageProps) => {
     useCalculateTargetValues(userData)
 
   const handleNext = useCallback(() => {
-    if (userData)
+    if (
+      userData.age &&
+      userData.weigth &&
+      userData.height &&
+      userData.goal &&
+      userData.activity &&
+      userData.gender
+    )
       set(ref(getDatabase(), `users/${user?.uid}/isSurveyFilled`), true)
 
     set(
@@ -95,25 +92,28 @@ const Start = ({ userData }: StartPageProps) => {
 export default Start
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const dbRef = ref(getDatabase())
   const currentUid = context.req.cookies.uid
 
-  const userData = await get(child(dbRef, `users/${currentUid}`))
-    .then(snapshot => {
-      if (snapshot.exists()) {
-        return {
-          age: snapshot.val().generalInfo.age,
-          weigth: snapshot.val().generalInfo.weigth,
-          goal: snapshot.val().generalInfo.goal,
-          activity: snapshot.val().generalInfo.activity,
-          gender: snapshot.val().generalInfo.gender,
-          height: snapshot.val().generalInfo.height,
+  let userData
+  if (currentUid) {
+    const dbRef = ref(getDatabase())
+    userData = await get(child(dbRef, `users/${currentUid}`))
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          return {
+            age: snapshot.val().generalInfo.age || 0,
+            weigth: snapshot.val().generalInfo.weigth || 0,
+            goal: snapshot.val().generalInfo.goal || '',
+            activity: snapshot.val().generalInfo.activity || '',
+            gender: snapshot.val().generalInfo.gender || '',
+            height: snapshot.val().generalInfo.height || 0,
+          }
         }
-      }
-    })
-    .catch(error => {
-      console.error(error)
-    })
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  } else userData = null
 
   return {
     props: { userData },

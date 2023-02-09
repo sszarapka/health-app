@@ -8,11 +8,10 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 
 export function useRestrictedPage() {
   const router = useRouter()
-
   const [isRestricted, setIsRestricted] = useState<boolean>(true)
-  const [isSurveyFilled, setIsSurveyFilled] = useState<boolean>()
-
   const [user, loading] = useAuthState(getAuth())
+  const [calledPush, setCalledPush] = useState(false)
+
   const isLoginPage =
     router.pathname.includes('login') || router.pathname.includes('logowanie')
 
@@ -21,42 +20,56 @@ export function useRestrictedPage() {
     router.pathname.startsWith('/witaj')
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && !loading) {
-      const cookies = new Cookies()
-      cookies.set('uid', user?.uid, { path: '/' })
+    async function restrictedPage() {
+      if (!loading) {
+        if (user) {
+          await get(child(ref(getDatabase()), `users/${user?.uid}`))
+            .then(snapshot => {
+              if (snapshot.exists()) {
+                const isSurveyFilled = snapshot.val().isSurveyFilled
 
-      get(child(ref(getDatabase()), `users/${user?.uid}`))
-        .then(snapshot => {
-          if (snapshot.exists()) {
-            setIsSurveyFilled(snapshot.val().isSurveyFilled)
+                const cookies = new Cookies()
+                cookies.set('uid', user?.uid, { path: '/' })
+
+                if (isLoginPage) {
+                  setIsRestricted(true)
+                  !calledPush && router.push(ROUTES.DASHBOARD)
+                  setCalledPush(true)
+                } else if (isWelcomePage) {
+                  if (isSurveyFilled) {
+                    setIsRestricted(true)
+                    !calledPush && router.push(ROUTES.DASHBOARD)
+                    setCalledPush(true)
+                  } else if (!isSurveyFilled) {
+                    setIsRestricted(false)
+                  }
+                } else {
+                  if (!isSurveyFilled) {
+                    setIsRestricted(true)
+                    !calledPush && router.push(ROUTES.WELCOME)
+                    setCalledPush(true)
+                  } else if (isSurveyFilled) {
+                    setIsRestricted(false)
+                  }
+                }
+              }
+            })
+            .catch(error => {
+              alert(error)
+            })
+        } else if (!user) {
+          if (isLoginPage) {
+            setIsRestricted(false)
+          } else {
+            setIsRestricted(true)
+            !calledPush && router.push(ROUTES.LOGIN)
+            setCalledPush(true)
           }
-        })
-        .catch(error => {
-          alert(error)
-        })
-
-      if (isSurveyFilled === undefined && !isLoginPage) setIsRestricted(true)
-      else if (isSurveyFilled === false && !isWelcomePage) {
-        setIsRestricted(true)
-        router.push(ROUTES.WELCOME)
-      } else if (isSurveyFilled === true && isWelcomePage) {
-        router.push(ROUTES.DASHBOARD)
-        setIsRestricted(true)
-      } else if (!user && !isLoginPage) {
-        router.push(ROUTES.LOGIN)
-        setIsRestricted(true)
-      } else if (!user && isLoginPage) {
-        setIsRestricted(false)
-      } else if (user && isLoginPage) {
-        router.push(ROUTES.DASHBOARD)
-        setIsRestricted(true)
-      } else if (!user && isLoginPage) {
-        setIsRestricted(false)
-      } else if (user && !isLoginPage) {
-        setIsRestricted(false)
+        }
       }
     }
-  }, [isLoginPage, isSurveyFilled, isWelcomePage, loading, router, user])
+    restrictedPage()
+  }, [calledPush, isLoginPage, isWelcomePage, loading, router, user])
 
   return isRestricted
 }

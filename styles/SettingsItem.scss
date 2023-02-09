@@ -14,8 +14,19 @@
     font-size: $font-l;
   }
   .settings-item__input.number {
-    text-align: right;
+    .ant-input-number-input {
+      text-align: right;
+    }
   }
+  .settings-item__input.number::-webkit-inner-spin-button,
+  .settings-item__input.number::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+  .settings-item__input.numbe[type='number'] {
+    appearance: textfield;
+  }
+
   .settings-item__switch {
     background-color: $grey !important;
   }

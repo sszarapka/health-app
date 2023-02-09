@@ -26,13 +26,18 @@ export interface ProductsListProps {
   type: 'add' | 'edit'
 }
 
+interface Option {
+  value: string
+  label: string
+}
+
 export interface SettingsItemProps {
   label: string
+  dbLabel: string
   type: 'select' | 'number' | 'switch'
-  options?: {
-    value: string
-    label: string
-  }[]
+  options?: Option[]
+  defaultValue: string | number
+  setValueChanged: Dispatch<SetStateAction<boolean>>
 }
 
 export interface WelcomeWrapperProps {
@@ -119,10 +124,6 @@ export interface DangerButtonProps {
   onClick?(): void
 }
 
-export type useRestrictedPageProps = {
-  type?: 'login'
-}
-
 export interface WelcomePageProps {
   username: string
 }
@@ -138,15 +139,49 @@ export interface useCalculateTargetValuesProps {
 
 export interface DashboardPageProps {
   userData: {
-    calorieTarget: number
-    carbsTarget: number
-    proteinTarget: number
-    fatTarget: number
-    waterTarget: number
     drunkWater: number
     carbsCurrent: number
     proteinCurrent: number
     fatCurrent: number
     weigth: number
+    age: number
+    height: number
+    goal: string
+    activity: string
+    gender: string
+  }
+}
+
+export interface ProgressPageProps {
+  userData: {
+    arm: number
+    chest: number
+    hips: number
+    kalf: number
+    neck: number
+    thigh: number
+    waist: number
+  }
+}
+
+export interface SettingsPageProps {
+  userData: {
+    age: number
+    weigth: number
+    goal: string
+    activity: string
+    gender: string
+    height: number
+  }
+}
+
+export interface StartPageProps {
+  userData: {
+    age: number
+    weigth: number
+    goal: string
+    activity: string
+    gender: string
+    height: number
   }
 }

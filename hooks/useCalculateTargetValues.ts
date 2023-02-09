@@ -1,13 +1,18 @@
 import { useCalculateTargetValuesProps } from '../types/types'
 
-export function useCalculateTargetValues({
-  age,
-  weigth,
-  goal,
-  activity,
-  gender,
-  height,
-}: useCalculateTargetValuesProps) {
+export function useCalculateTargetValues(
+  userData: useCalculateTargetValuesProps
+) {
+  if (userData === null)
+    return {
+      waterTarget: 0,
+      calorieTarget: 0,
+      carbsTarget: 0,
+      proteinTarget: 0,
+      fatTarget: 0,
+    }
+  const { gender, age, weigth, height, goal, activity } = userData
+
   const MULTIPLIER = gender === 'Kobieta' ? 655.1 : 66.5
   const WEIGTH_CONSTANT = gender === 'Kobieta' ? 9.563 : 13.75
   const HEIGHT_CONSTANT = gender === 'Kobieta' ? 1.85 : 5.003
@@ -66,7 +71,7 @@ export function useCalculateTargetValues({
       PROTEIN_CONSTANT = 2
       FAT_CONSTANT = 0.25
   }
-  const waterTarget = weigth * WATER_PER_KILO
+  const waterTarget = Math.floor(weigth * WATER_PER_KILO)
 
   const fatTarget = Math.floor(
     (calorieTarget * FAT_CONSTANT) / CALORIES_IN_GRAM_OF_FAT

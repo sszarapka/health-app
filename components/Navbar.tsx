@@ -27,9 +27,7 @@ const Navbar = () => {
       <Link
         href={ROUTES.PROGRESS}
         className={
-          path.includes('measurements')
-            ? 'item-container active'
-            : 'item-container'
+          path.includes('progress') ? 'item-container active' : 'item-container'
         }
       >
         <DashboardFilled className="nav__item" />
