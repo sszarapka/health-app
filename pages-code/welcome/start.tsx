@@ -1,9 +1,8 @@
 import { Typography } from 'antd'
 const { Text, Title } = Typography
 import { useCallback, useEffect } from 'react'
-import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { child, get, getDatabase, ref, set } from 'firebase/database'
+import { getDatabase, ref, set } from 'firebase/database'
 import { useCalculateTargetValues } from '../../hooks/useCalculateTargetValues'
 import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import { useUser } from '../../hooks/useUser'
@@ -90,32 +89,3 @@ const Start = ({ userData }: StartPageProps) => {
 }
 
 export default Start
-
-export const getServerSideProps: GetServerSideProps = async context => {
-  const currentUid = context.req.cookies.uid
-
-  let userData
-  if (currentUid) {
-    const dbRef = ref(getDatabase())
-    userData = await get(child(dbRef, `users/${currentUid}`))
-      .then(snapshot => {
-        if (snapshot.exists()) {
-          return {
-            age: snapshot.val().generalInfo.age || 0,
-            weigth: snapshot.val().generalInfo.weigth || 0,
-            goal: snapshot.val().generalInfo.goal || '',
-            activity: snapshot.val().generalInfo.activity || '',
-            gender: snapshot.val().generalInfo.gender || '',
-            height: snapshot.val().generalInfo.height || 0,
-          }
-        }
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  } else userData = null
-
-  return {
-    props: { userData },
-  }
-}

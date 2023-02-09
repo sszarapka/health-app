@@ -12,12 +12,9 @@ export function useRestrictedPage() {
   const [user, loading] = useAuthState(getAuth())
   const [calledPush, setCalledPush] = useState(false)
 
-  const isLoginPage =
-    router.pathname.includes('login') || router.pathname.includes('logowanie')
+  const isLoginPage = router.pathname.includes(ROUTES.LOGIN)
 
-  const isWelcomePage =
-    router.pathname.startsWith('/welcome') ||
-    router.pathname.startsWith('/witaj')
+  const isWelcomePage = router.pathname.startsWith(ROUTES.WELCOME)
 
   useEffect(() => {
     async function restrictedPage() {

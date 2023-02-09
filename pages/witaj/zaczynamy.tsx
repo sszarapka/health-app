@@ -1,7 +1,7 @@
 import { ref, getDatabase, get, child } from 'firebase/database'
 import { GetServerSideProps } from 'next'
-import Dashoard from '../pages-code/index'
-export default Dashoard
+import Start from '../../pages-code/welcome/start'
+export default Start
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const currentUid = context.req.cookies.uid
@@ -13,12 +13,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
       .then(snapshot => {
         if (snapshot.exists()) {
           return {
-            carbsCurrent: snapshot.val().nutrition.carbsCurrent || 0,
-            proteinCurrent: snapshot.val().nutrition.proteinCurrent || 0,
-            fatCurrent: snapshot.val().nutrition.fatCurrent || 0,
-            drunkWater: snapshot.val().nutrition.drunkWater || 0,
-            weigth: snapshot.val().generalInfo.weigth || 0,
             age: snapshot.val().generalInfo.age || 0,
+            weigth: snapshot.val().generalInfo.weigth || 0,
             goal: snapshot.val().generalInfo.goal || '',
             activity: snapshot.val().generalInfo.activity || '',
             gender: snapshot.val().generalInfo.gender || '',

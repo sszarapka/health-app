@@ -1,9 +1,7 @@
 import { Typography } from 'antd'
 const { Text } = Typography
 import { useCallback, useEffect } from 'react'
-import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { getDatabase, ref, child, get } from 'firebase/database'
 import { ROUTES } from '../../constants/routes'
 import { WelcomePageProps } from '../../types/types'
 import Loading from '../../components/Loading'
@@ -44,26 +42,3 @@ const Welcome = ({ username }: WelcomePageProps) => {
 }
 
 export default Welcome
-
-export const getServerSideProps: GetServerSideProps = async context => {
-  const currentUid = context.req.cookies.uid
-
-  let username
-  if (currentUid) {
-    const dbRef = ref(getDatabase())
-    username = await get(child(dbRef, `users/${currentUid}`))
-      .then(snapshot => {
-        if (snapshot.exists()) {
-          const name: string = snapshot.val().name
-          return name
-        }
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  } else username = null
-
-  return {
-    props: { username },
-  }
-}
