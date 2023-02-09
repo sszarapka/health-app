@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { initializeApp, getApps, getApp } from 'firebase/app'
 import { firebaseConfig } from '../firebase-config'
+import { ROUTES } from '../constants/routes'
 import Layout from '../components/Layout'
 import WelcomeLayout from '../components/WelcomeLayout'
 
@@ -16,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {router.startsWith('/welcome') ? (
+      {router.startsWith(ROUTES.WELCOME) ? (
         <WelcomeLayout>
           <Component {...pageProps} />
         </WelcomeLayout>

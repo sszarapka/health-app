@@ -19,7 +19,9 @@ const Navbar = () => {
     <nav className="nav">
       <Link
         href={ROUTES.DASHBOARD}
-        className={path === '/' ? 'item-container active' : 'item-container'}
+        className={
+          path === ROUTES.DASHBOARD ? 'item-container active' : 'item-container'
+        }
       >
         <PieChartFilled className="nav__item" />
         Panel
@@ -27,7 +29,7 @@ const Navbar = () => {
       <Link
         href={ROUTES.PROGRESS}
         className={
-          path.includes('progress') ? 'item-container active' : 'item-container'
+          path === ROUTES.PROGRESS ? 'item-container active' : 'item-container'
         }
       >
         <DashboardFilled className="nav__item" />
@@ -36,18 +38,20 @@ const Navbar = () => {
       <Link
         href={ROUTES.NUTRITION}
         className={
-          path.includes('nutrition')
+          path.includes(ROUTES.NUTRITION)
             ? 'item-container active'
             : 'item-container'
         }
       >
-        {/* <FontAwesomeIcon icon={['fas', 'utensils']} className="nav__item" /> */}
+        <FontAwesomeIcon icon={['fas', 'utensils']} className="nav__item" />
         Odywianie
       </Link>
       <Link
         href={ROUTES.BLOG}
         className={
-          path.includes('blog') ? 'item-container active' : 'item-container'
+          path.includes(ROUTES.BLOG)
+            ? 'item-container active'
+            : 'item-container'
         }
       >
         <ReadFilled className="nav__item" />
@@ -56,7 +60,9 @@ const Navbar = () => {
       <Link
         href={ROUTES.SETTINGS}
         className={
-          path.includes('settings') ? 'item-container active' : 'item-container'
+          path.includes(ROUTES.SETTINGS)
+            ? 'item-container active'
+            : 'item-container'
         }
       >
         <SettingFilled className="nav__item" />

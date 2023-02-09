@@ -3,17 +3,16 @@ const { Title } = Typography
 import { useEffect, useState } from 'react'
 import Cookies from 'universal-cookie'
 import { useRouter } from 'next/router'
-import { GetServerSideProps } from 'next'
-import { ref, getDatabase, get, child, set } from 'firebase/database'
+import { ref, getDatabase, set } from 'firebase/database'
 import { getAuth, signOut } from 'firebase/auth'
 import { ROUTES } from '../constants/routes'
 import { SettingsPageProps } from '../types/types'
 import { useRestrictedPage } from '../hooks/useRestrictedPage'
+import { useUser } from '../hooks/useUser'
 import { useCalculateTargetValues } from '../hooks/useCalculateTargetValues'
 import Loading from '../components/Loading'
 import SettingsItem from '../components/SettingsItem'
 import DangerButton from '../components/DangerButton'
-import { useUser } from '../hooks/useUser'
 
 const Settings = ({ userData }: SettingsPageProps) => {
   const router = useRouter()
@@ -137,32 +136,3 @@ const Settings = ({ userData }: SettingsPageProps) => {
 }
 
 export default Settings
-
-export const getServerSideProps: GetServerSideProps = async context => {
-  const currentUid = context.req.cookies.uid
-
-  let userData
-  if (currentUid) {
-    const dbRef = ref(getDatabase())
-    userData = await get(child(dbRef, `users/${currentUid}`))
-      .then(snapshot => {
-        if (snapshot.exists()) {
-          return {
-            age: snapshot.val().generalInfo.age || 0,
-            weigth: snapshot.val().generalInfo.weigth || 0,
-            goal: snapshot.val().generalInfo.goal || '',
-            activity: snapshot.val().generalInfo.activity || '',
-            gender: snapshot.val().generalInfo.gender || '',
-            height: snapshot.val().generalInfo.height || 0,
-          }
-        }
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  } else userData = null
-
-  return {
-    props: { userData },
-  }
-}
