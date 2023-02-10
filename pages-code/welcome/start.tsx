@@ -58,7 +58,12 @@ const Start = ({ userData }: StartPageProps) => {
     proteinTarget,
     router,
     user?.uid,
-    userData,
+    userData.activity,
+    userData.age,
+    userData.gender,
+    userData.goal,
+    userData.height,
+    userData.weigth,
     waterTarget,
   ])
 

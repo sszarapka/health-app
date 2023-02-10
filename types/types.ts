@@ -152,18 +152,6 @@ export interface DashboardPageProps {
   }
 }
 
-export interface ProgressPageProps {
-  userData: {
-    arm: number
-    chest: number
-    hips: number
-    kalf: number
-    neck: number
-    thigh: number
-    waist: number
-  }
-}
-
 export interface SettingsPageProps {
   userData: {
     age: number
@@ -184,4 +172,26 @@ export interface StartPageProps {
     gender: string
     height: number
   }
+}
+
+export interface ImageInfo {
+  url: string
+  date: string
+  timeStamp: number
+}
+
+export interface ProgressPageProps {
+  userData: {
+    arm: number
+    chest: number
+    hips: number
+    kalf: number
+    neck: number
+    thigh: number
+    waist: number
+    imagesArray: ImageInfo[]
+  }
+}
+export interface ProgressImagesProps {
+  imagesArray: ImageInfo[]
 }

@@ -4,6 +4,11 @@
   display: grid;
   grid-template-columns: (repeat(3, 1fr));
   gap: 10px;
+  .progress-images__upload {
+    display: flex;
+    height: 100%;
+    aspect-ratio: 9 / 16;
+  }
   .progress-images__add {
     height: 100%;
     aspect-ratio: 9 / 16;

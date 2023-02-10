@@ -8,12 +8,12 @@ import Water from '../components/Water'
 
 const Dashboard = ({ userData }: DashboardPageProps) => {
   const dataForCalculations = {
-    weigth: userData.weigth,
-    age: userData.age,
-    goal: userData.goal,
-    activity: userData.activity,
-    gender: userData.gender,
-    height: userData.height,
+    weigth: userData?.weigth,
+    age: userData?.age,
+    goal: userData?.goal,
+    activity: userData?.activity,
+    gender: userData?.gender,
+    height: userData?.height,
   }
 
   const { waterTarget, carbsTarget, proteinTarget, fatTarget } =

@@ -1,30 +1,88 @@
-import { Image, Button, Typography } from 'antd'
-import { PlusCircleFilled } from '@ant-design/icons'
+import {
+  Image,
+  Button,
+  Typography,
+  Upload,
+  UploadProps,
+  UploadFile,
+} from 'antd'
+import { EyeOutlined, PlusCircleFilled } from '@ant-design/icons'
+import { UploadChangeParam } from 'antd/es/upload'
 const { Text } = Typography
-const ProgressImages = () => {
+import { ProgressImagesProps, ImageInfo } from '../types/types'
+import { useEffect, useState } from 'react'
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
+import { useUser } from '../hooks/useUser'
+
+const ProgressImages = ({ imagesArray }: ProgressImagesProps) => {
+  const storage = getStorage()
+  const user = useUser()
+  const [imagesInfo, setImagesInfo] = useState<ImageInfo[]>(imagesArray)
+
+  const handleUpload: UploadProps['onChange'] = (
+    info: UploadChangeParam<UploadFile>
+  ) => {
+    if (info.file.status === 'done') {
+      const date = info.file.lastModifiedDate?.toLocaleDateString('pl')!
+      const timeStamp = info.file.lastModified!
+
+      const metadata = {
+        customMetadata: {
+          lastModified: date,
+          timeStamp: timeStamp.toString(),
+        },
+      }
+      const storageRef = ref(storage, `/images/${user?.uid}/${timeStamp}`)
+      uploadBytes(storageRef, info.file.originFileObj as Blob, metadata).then(
+        snapshot => {
+          getDownloadURL(snapshot.ref).then(url => {
+            setImagesInfo(prev =>
+              prev
+                ? [{ url, date, timeStamp }, ...prev]
+                : [{ url, date, timeStamp }]
+            )
+          })
+        }
+      )
+    }
+  }
+
+  useEffect(() => setImagesInfo(imagesArray), [imagesArray])
+
+  const images = imagesInfo
+    ?.sort((a, b) => b.timeStamp - a.timeStamp)
+    .map(image => {
+      return (
+        <div className="image-container" key={image.timeStamp}>
+          <Image
+            src={image.url}
+            alt="postęp"
+            className="progress-images__image"
+            preview={{
+              mask: (
+                <>
+                  <EyeOutlined /> Podgląd
+                </>
+              ),
+            }}
+          />
+          <Text className="progress-images__date">{image.date}</Text>
+        </div>
+      )
+    })
+
   return (
     <section className="progress-images">
-      <Button className="progress-images__add">
-        <PlusCircleFilled />
-      </Button>
-
-      <div className="image-container">
-        <Image
-          src="https://img.freepik.com/free-photo/cropped-close-up-body-fit-woman-wearing-shorts-sport-top-showing-slim-beautiful-stomach-abs_231208-8892.jpg?w=2000"
-          alt="postęp"
-          className="progress-images__image"
-        />
-        <Text className="progress-images__date">23 / 12 / 2022</Text>
-      </div>
-
-      <div className="image-container">
-        <Image
-          src="https://www.trener.pl/media/__sized__/artykul_foto/mezomorfik-cechy-i-dieta-auto-FS-crop-c0-5__0-5-652x367-70.jpg"
-          alt="postęp"
-          className="progress-images__image"
-        />
-        <Text className="progress-images__date">03 / 12 / 2022</Text>
-      </div>
+      <Upload
+        className="progress-images__upload"
+        onChange={handleUpload}
+        showUploadList={false}
+      >
+        <Button className="progress-images__add">
+          <PlusCircleFilled />
+        </Button>
+      </Upload>
+      {images}
     </section>
   )
 }
