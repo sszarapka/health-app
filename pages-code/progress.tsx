@@ -48,7 +48,8 @@ const Progress = ({ userData }: ProgressPageProps) => {
       />
 
       <Title level={2}>Zdjęcia sylwetki</Title>
-      <ProgressImages />
+
+      <ProgressImages imagesArray={userData.imagesArray} />
     </>
   )
 }

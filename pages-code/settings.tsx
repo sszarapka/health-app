@@ -77,28 +77,28 @@ const Settings = ({ userData }: SettingsPageProps) => {
             { label: 'Męzczyzna', value: 'Męzczyzna' },
             { label: 'Kobieta', value: 'Kobieta' },
           ]}
-          defaultValue={userData.gender}
+          defaultValue={userData?.gender}
           setValueChanged={setValueChanged}
         />
         <SettingsItem
           label="Wiek"
           dbLabel="age"
           type="number"
-          defaultValue={userData.age}
+          defaultValue={userData?.age}
           setValueChanged={setValueChanged}
         />
         <SettingsItem
           label="Waga"
           dbLabel="weigth"
           type="number"
-          defaultValue={userData.weigth}
+          defaultValue={userData?.weigth}
           setValueChanged={setValueChanged}
         />
         <SettingsItem
           label="Wzrost"
           dbLabel="height"
           type="number"
-          defaultValue={userData.height}
+          defaultValue={userData?.height}
           setValueChanged={setValueChanged}
         />
 
@@ -108,9 +108,10 @@ const Settings = ({ userData }: SettingsPageProps) => {
           type="select"
           options={[
             { label: 'Schudnąć', value: 'Schudnąć' },
-            { label: 'Zgrubnąć', value: 'Zgrubnąć' },
+            { label: 'Zbudować mięśnie', value: 'Zbudować mięśnie' },
+            { label: 'Utrzymać wagę', value: 'Utrzymać wagę' },
           ]}
-          defaultValue={userData.goal}
+          defaultValue={userData?.goal}
           setValueChanged={setValueChanged}
         />
         <SettingsItem
@@ -122,7 +123,7 @@ const Settings = ({ userData }: SettingsPageProps) => {
             { label: 'Umiarkowana', value: 'Umiarkowana' },
             { label: 'Wysoka', value: 'Wysoka' },
           ]}
-          defaultValue={userData.activity}
+          defaultValue={userData?.activity}
           setValueChanged={setValueChanged}
         />
 
