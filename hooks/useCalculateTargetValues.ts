@@ -11,6 +11,7 @@ export function useCalculateTargetValues(
       proteinTarget: 0,
       fatTarget: 0,
     }
+
   const { gender, age, weigth, height, goal, activity } = userData
 
   const MULTIPLIER = gender === 'Kobieta' ? 655.1 : 66.5
@@ -48,9 +49,10 @@ export function useCalculateTargetValues(
   let PROTEIN_CONSTANT: number
   let FAT_CONSTANT: number
 
-  const calorieDeficit = ((weigth / 0.005) * CALORIES_IN_KILO_OF_FAT) / 7
+  const calorieDeficit = (weigth * 0.005 * CALORIES_IN_KILO_OF_FAT) / 7
   const calorieSurpluss = (weigth * 0.02 * CALORIES_IN_KILO_OF_FAT) / 30
   let calorieTarget = Math.floor(PPM * PAL)
+
   switch (goal) {
     case 'Schudnąć':
       PROTEIN_CONSTANT = 2.5
