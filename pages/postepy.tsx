@@ -1,3 +1,4 @@
+import { initializeApp } from 'firebase/app'
 import { ref, getDatabase, get, child } from 'firebase/database'
 
 import {
@@ -9,12 +10,14 @@ import {
 } from 'firebase/storage'
 import { GetServerSideProps } from 'next'
 import { useState } from 'react'
+import { firebaseConfig } from '../firebase-config'
 import Progress from '../pages-code/progress'
 import { ImageInfo } from '../types/types'
 export default Progress
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const currentUid = context.req.cookies.uid
+  initializeApp(firebaseConfig)
 
   let userData
   if (currentUid) {

@@ -1,10 +1,13 @@
+import { initializeApp } from 'firebase/app'
 import { ref, getDatabase, get, child } from 'firebase/database'
 import { GetServerSideProps } from 'next'
+import { firebaseConfig } from '../firebase-config'
 import Dashoard from '../pages-code/index'
 export default Dashoard
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const currentUid = context.req.cookies.uid
+  initializeApp(firebaseConfig)
 
   let userData
   if (currentUid) {

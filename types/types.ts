@@ -195,3 +195,15 @@ export interface ProgressPageProps {
 export interface ProgressImagesProps {
   imagesArray: ImageInfo[]
 }
+
+interface BlogPost {
+  content: string[]
+  coverUrl: string
+  title: string
+}
+export interface ArticlePageProps {
+  postData: BlogPost
+}
+export interface BlogPageProps {
+  blogData: BlogPost[]
+}
