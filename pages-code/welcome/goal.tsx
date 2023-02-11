@@ -12,7 +12,7 @@ import RadioGroup from '../../components/RadioGroup'
 const Goal = () => {
   const router = useRouter()
 
-  const [inputValue, setInputValue] = useState<string>('')
+  const [inputValue, setInputValue] = useState<string>('Schudnąć')
   const [user] = useAuthState(getAuth())
   const userUid = user?.uid
 

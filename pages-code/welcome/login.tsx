@@ -9,11 +9,7 @@ import { useRestrictedPage } from '../../hooks/useRestrictedPage'
 import Loading from '../../components/Loading'
 
 const LogIn = () => {
-  const router = useRouter()
   const provider = new GoogleAuthProvider()
-
-  const [isRouterUsed, setIsRouterUsed] = useState<boolean>(false)
-
   const databaseRef = getDatabase()
 
   const handleLogIn = () => {
@@ -31,10 +27,6 @@ const LogIn = () => {
             if (snapshot.exists()) {
               const isSurveyFilled: boolean = snapshot.val().isSurveyFilled
               const path = isSurveyFilled ? ROUTES.DASHBOARD : ROUTES.WELCOME
-              if (!isRouterUsed) {
-                router.push(path)
-                setIsRouterUsed(true)
-              }
             }
           }
         )

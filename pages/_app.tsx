@@ -7,11 +7,13 @@ import { firebaseConfig } from '../firebase-config'
 import { ROUTES } from '../constants/routes'
 import Layout from '../components/Layout'
 import WelcomeLayout from '../components/WelcomeLayout'
+import { getDatabase } from 'firebase/database'
 
 export default function App({ Component, pageProps }: AppProps) {
   if (!getApps().length) {
     const app = initializeApp(firebaseConfig)
     getStorage(app)
+    getDatabase(app)
   } else {
     getApp()
   }
