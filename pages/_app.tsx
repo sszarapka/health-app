@@ -1,13 +1,13 @@
 import '../styles/styles.scss'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
+import { firebaseConfig } from '../firebase-config'
 import { initializeApp, getApps, getApp } from 'firebase/app'
 import { getStorage } from 'firebase/storage'
-import { firebaseConfig } from '../firebase-config'
+import { getDatabase } from 'firebase/database'
 import { ROUTES } from '../constants/routes'
 import Layout from '../components/Layout'
 import WelcomeLayout from '../components/WelcomeLayout'
-import { getDatabase } from 'firebase/database'
 
 export default function App({ Component, pageProps }: AppProps) {
   if (!getApps().length) {
