@@ -1,5 +1,5 @@
 const Loading = () => {
-  return <div>Ładniutka animacja ładowania...</div>
+  return <div className="loading"></div>
 }
 
 export default Loading

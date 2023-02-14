@@ -39,7 +39,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const dbRef = ref(getDatabase())
     userData = await get(child(dbRef, `users/${currentUid}`))
       .then(snapshot => {
-        console.log(snapshot)
         if (snapshot.exists()) {
           return {
             arm: snapshot.val().progress?.arm || 0,

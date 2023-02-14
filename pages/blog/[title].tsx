@@ -33,7 +33,6 @@ export const getStaticPaths = async () => {
   const posts = await get(child(dbRef, `posts`))
 
   const paths = Object.keys(posts.val()).map((post: string) => {
-    console.log(post)
     return {
       params: {
         title: post,

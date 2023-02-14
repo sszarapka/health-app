@@ -11,7 +11,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const posts = await get(child(dbRef, `posts/`))
   const blogData = posts.val()
-  console.log(blogData)
   return {
     props: {
       blogData,
