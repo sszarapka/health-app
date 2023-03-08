@@ -1,6 +1,6 @@
 # Health app
 
-<b> The application is designed to assist users in attaining their desired body shape and promoting a healthy lifestyle. By calculating the caloric demand required to meet the user's specific goals, it helps them achieve their dream figure. In addition, the user can monitor their water intake and track their progress towards their goal, making it a valuable tool for anyone seeking to improve their health and fitness. </b>
+<b> The app helps users in getting their desired body shape and leading a healthy lifestyle. By calculating the caloric demand required to meet the user's specific goals, it helps them achieve their dream figure. In addition, the user can monitor water intake and track progress towards their goal, making it a valuable tool for anyone seeking to improve their health and fitness. </b>
 
 ## Features
 - Calculating daily caloric demand and carbohydrates/protein/fat ratio
